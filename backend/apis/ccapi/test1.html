@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Crowd Count Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+        label, input, button {
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+        button {
+            cursor: pointer;
+        }
+        #predictions {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Video Crowd Count Prediction</h1>
+        <label for="camera_ip">Camera IP:</label>
+        <input type="text" id="camera_ip" placeholder="Enter Camera IP">
+        
+        <label for="video_path">Video Path:</label>
+        <input type="text" id="video_path" placeholder="Enter Video Path">
+
+        <button onclick="startPrediction()">Start Prediction</button>
+
+        <div id="predictions">
+            <h2>Predicted Counts:</h2>
+            <ul id="countList"></ul>
+        </div>
+    </div>
+
+    <script>
+        let websocket;
+
+        function startPrediction() {
+            const cameraIP = document.getElementById('camera_ip').value;
+            const videoPath = document.getElementById('video_path').value;
+
+            if (!cameraIP || !videoPath) {
+                alert("Please enter both Camera IP and Video Path");
+                return;
+            }
+
+            websocket = new WebSocket("ws://localhost:8000/ws");
+
+            websocket.onopen = () => {
+                const data = { camera_ip: cameraIP, video_path: videoPath };
+                websocket.send(JSON.stringify(data));
+            };
+
+            websocket.onmessage = (event) => {
+                const countList = document.getElementById('countList');
+                const listItem = document.createElement('li');
+                listItem.textContent = event.data;
+                countList.appendChild(listItem);
+            };
+
+            websocket.onclose = () => {
+                console.log("WebSocket connection closed");
+            };
+
+            websocket.onerror = (error) => {
+                console.error("WebSocket error: ", error);
+            };
+        }
+    </script>
+</body>
+</html>
