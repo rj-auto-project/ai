@@ -26,16 +26,16 @@ from psycopg2.extras import execute_values
 
 ### GLOBAL VARIABLE AND MODELS
 r = redis.Redis(host='localhost', port=6379, db=0)
-
+PARENT_DIR = "/home/annone/ai"
 global video_writer
 # device selection
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # loading model on device
-model = YOLO("/home/annone/ai-camera/backend/stream_test/best.pt")
-model.to(device)
+# model = YOLO("/home/annone/ai/models/crowd_count.pt")
+# model.to(device)
 # creating crowd-count model
 crowd_count_model = create_model("efficientnet_lite0")
-PATH_model = "/home/annone/ai-camera/backend/stream_test/student_025.pt"
+PATH_model = "/home/annone/ai/models/cc_count.pt"
 MEAN_STD = ([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
 crowd_count_model.load_state_dict(torch.load(PATH_model, map_location=device))
 # loading model on device
@@ -46,18 +46,18 @@ img_transform = transforms.Compose(
 )
 corp_size = 256
 # Initialize the model
-model = create_model('efficientnet_lite0')  # Adjust according to your model
-PATH_model = "/home/annone/ai-camera/backend/stream/student_025.pt"
+# model = create_model('efficientnet_lite0')  # Adjust according to your model
+# PATH_model = "/home/annone/ai-camera/backend/stream/student_025.pt"
 
-# Load the state dictionary to the appropriate device
-model.load_state_dict(torch.load(PATH_model, map_location=device))
-model.to(device)  # Ensure the model is on the correct device
-model.eval()
+# # Load the state dictionary to the appropriate device
+# model.load_state_dict(torch.load(PATH_model, map_location=device))
+# model.to(device)  # Ensure the model is on the correct device
+# model.eval()
 
-img_transform = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize(MEAN_STD[0], MEAN_STD[1])
-])
+# img_transform = transforms.Compose([
+#     transforms.ToTensor(),
+#     transforms.Normalize(MEAN_STD[0], MEAN_STD[1])
+# ])
 
 print("start")
 
@@ -83,43 +83,6 @@ def generate_custom_string(cam_ip, track_id):
     custom_string = f"{random_mix}_{track_id}_{current_timestamp}_{cam_ip}"
 
     return custom_string
-
-
-### DETECTIONS LOGS SAVING
-
-
-def insert_into_table():
-    try:
-        connection = Database.get_connection()
-        # if connection.is_connected():
-        cursor = connection.cursor()
-            # insert_query = f"INSERT INTO detection_logs (camera_id, camera_ip, timestamp, box_coords, detection_class, track_id, class_confidence, metadata) VALUES ('{camera_id}' ,'{camera_ip}', '{timestamp}', '{box_coords}', '{detection_class}', '{track_id}', '{class_confidence}', '{metadata}');"
-            # cursor.execute(insert_query)
-            # connection.commit()
-    except Error as e:
-        print(f"Error: {e}")
-    finally:
-        if connection:
-            Database.return_connection(connection)
-
-
-### CROWD-COUNT LOGS SAVING
-
-def crowd_insert_into_table(
-    # camera_id, camera_ip, timestamp, crowd_count, crowd_count_confidence_score
-):
-    try:
-        connection = Database.get_connection()
-        # if connection.is_connected():
-        cursor = connection.cursor()
-            # insert_query = f"INSERT INTO crowd_count (camera_id, camera_ip, timestamp, crowd_count, crowd_count_confidence_score) VALUES ('{camera_id}', '{camera_ip}',' {timestamp}',' {crowd_count}', '{crowd_count_confidence_score}')"
-            # cursor.execute(insert_query)
-            # connection.commit()
-    except Error as e:
-        print(f"Error: {e}")
-    finally:
-        if connection:
-            Database.return_connection(connection)
 
 
 ### CROWD COUNT PER FRAME
@@ -185,15 +148,20 @@ def process_raw_d_logs(auto_loop = True):
             value = r.get(key)
             decode_key = key.decode()
             decode_value = value.decode().split("|")
+            uuid = decode_value[7]
             try:
-                image = cv2.imread(f"/home/annone/ai-camera/backend/stream/d_temp/{decode_value[7]}")
-                image = image.reshape((image.shape[0] * image.shape[1], 3))
+                image_data = r.get(f"{uuid}:image")
+                np_arr = np.frombuffer(image_data, np.uint8)
+                image = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
+                image = image.reshape((-1, image.shape[2]))
                 aa = k_mean_color_detection(image)
-                os.remove(f"/home/annone/ai-camera/backend/stream/d_temp/{decode_value[7]}")
+                r.delete(f"{uuid}:image")
                 decode_value[7]  = aa
-                r.set(f"{decode_key}:d_log","|".join(decode_value))
+                print(aa)
+                r.set(f"{uuid}:d_log","|".join(decode_value))
                 r.delete(decode_key)
             except:
+                print("deleted")
                 r.delete(decode_key)
         if auto_loop == False:
             break
@@ -234,11 +202,15 @@ def process_raw_cc_logs(auto_loop = True):
             value = r.get(key)
             decode_key = key.decode()
             decode_value = value.decode().split('|')
+            uuid = decode_value[2]
             try:
-                image = cv2.imread(f"/home/annone/ai-camera/backend/stream/cc_temp/{decode_value[2]}.jpg")
+                image_data = r.get(f"{uuid}:image")
+                np_arr = np.frombuffer(image_data,np.uint8)
+                image = cv2.imdecode(np_arr, cv2.IMREAD_UNCHANGED)
+                image = image.reshape(-1,image.shape[2])
+                # image = cv2.imread(f"{PARENT_DIR}/backend/stream/cc_temp/{decode_value[2]}.jpg")
                 crowd_count, crowd_confidence = crowd_count_on_frame(image)
                 r.set(f"{decode_key}:cc_log",f"{decode_value[0]}|{decode_value[1]}|{crowd_count}|{crowd_confidence}")
-                os.remove(f"/home/annone/ai-camera/backend/stream/cc_temp/{decode_value[2]}.jpg")
                 r.delete(decode_key)
             except:
                 r.delete(decode_key)
@@ -272,31 +244,3 @@ def process_cc_logs(auto_loop = True):
         if auto_loop == False:
             break
         time.sleep(2)
-
-def do_threading():
-    print("start threading")
-    frame = cv2.imread("/home/annone/ai-camera/backend/stream_test/4.png")
-
-    from concurrent.futures import ThreadPoolExecutor
-
-    with ThreadPoolExecutor(max_workers=4) as executor:
-        executor.map(generate_custom_string,("23.45.67.89","ABGC25563"))
-        executor.map(insert_into_table)
-        executor.map(crowd_insert_into_table)
-        executor.map(crowd_count_on_frame,frame)
-
-    # t1 = threading.Thread(target=generate_custom_string,args=("23.45.67.89","ABGC25563"))
-    # t2 = threading.Thread(target=insert_into_table)
-    # t3 = threading.Thread(target=crowd_insert_into_table)
-    # t4 = threading.Thread(target=crowd_count_on_frame,args=(frame))
-
-    # t1.start()
-    # t2.start()
-    # t3.start()
-    # t4.start()
-
-    # t1.join()
-    # t2.join()
-    # t3.join()
-    # t4.join()
-    return "success"
