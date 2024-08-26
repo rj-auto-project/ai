@@ -157,7 +157,6 @@ def process_raw_d_logs(auto_loop = True):
                 aa = k_mean_color_detection(image)
                 r.delete(f"{uuid}:image")
                 decode_value[7]  = aa
-                print(aa)
                 r.set(f"{uuid}:d_log","|".join(decode_value))
                 r.delete(decode_key)
             except:
@@ -233,7 +232,6 @@ def process_cc_logs(auto_loop = True):
                 r.delete(decode_key)
             if len(batch) > 0:
                 try:
-                    print(batch)
                     query = 'INSERT INTO "CrowdCount" ("camera_ip", "timestamp", "count", "confidence") VALUES %s;'
                     execute_values(cursor, query, batch)
                     conn.commit()
