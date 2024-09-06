@@ -684,7 +684,9 @@ pathDefaults:
 # for example "~^prefix" will match all paths that start with "prefix".
 paths:
   # example:
-  # my_camera:
+  cam1:
+    runOnInit: ffmpeg -i rtsp://localhost:8554/stream -c:v libx264 -preset ultrafast -tune zerolatency -f rtsp rtsp://localhost:$RTSP_PORT/$MTX_PATH
+    runOnInitRestart: yes
   #   source: rtsp://my_camera
 
   # Settings under path "all_others" are applied to all paths that

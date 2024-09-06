@@ -1,6 +1,4 @@
 import cv2
-from ultralytics import YOLO
-from mysql.connector import Error
 import torch
 import tensorflow as tf
 from timmML_025.models.factory import create_model
@@ -11,18 +9,13 @@ import sys
 import time
 import random
 import string
-# from color_detection import format_output, crop_and_classify
 import joblib
 from db import Database
 import numpy as np
 from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
 import redis
-from io import BytesIO
-import matplotlib.pyplot as plt
-import matplotlib.patches as patches
-import os
 from psycopg2.extras import execute_values
+import asyncio
 
 ### GLOBAL VARIABLE AND MODELS
 r = redis.Redis(host='localhost', port=6379, db=0)
@@ -45,19 +38,7 @@ img_transform = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize(MEAN_STD[0], MEAN_STD[1])]
 )
 corp_size = 256
-# Initialize the model
-# model = create_model('efficientnet_lite0')  # Adjust according to your model
-# PATH_model = "/home/annone/ai-camera/backend/stream/student_025.pt"
 
-# # Load the state dictionary to the appropriate device
-# model.load_state_dict(torch.load(PATH_model, map_location=device))
-# model.to(device)  # Ensure the model is on the correct device
-# model.eval()
-
-# img_transform = transforms.Compose([
-#     transforms.ToTensor(),
-#     transforms.Normalize(MEAN_STD[0], MEAN_STD[1])
-# ])
 
 print("start")
 
@@ -139,6 +120,7 @@ def color_detection():
     for key in matching_keys:
         value = r.get(key)
 
+# '1|127.0.0.1|[412,204,77,121]|motorbike-rider|qcYXs5PM_39_1724913805_127_0_0_1|0.8612010478973389|817_qcYXs5PM_39_1724913805_127_0_0_1_976'
 
 def process_raw_d_logs(auto_loop = True):
     print("cpu")
@@ -148,7 +130,7 @@ def process_raw_d_logs(auto_loop = True):
             value = r.get(key)
             decode_key = key.decode()
             decode_value = value.decode().split("|")
-            uuid = decode_value[7]
+            uuid = decode_value[6]
             try:
                 image_data = r.get(f"{uuid}:image")
                 np_arr = np.frombuffer(image_data, np.uint8)
@@ -156,7 +138,9 @@ def process_raw_d_logs(auto_loop = True):
                 image = image.reshape((-1, image.shape[2]))
                 aa = k_mean_color_detection(image)
                 r.delete(f"{uuid}:image")
-                decode_value[7]  = aa
+                decode_value[6] = aa
+                decode_value.append("red")
+                decode_value.append("blue")
                 r.set(f"{uuid}:d_log","|".join(decode_value))
                 r.delete(decode_key)
             except:
@@ -165,8 +149,6 @@ def process_raw_d_logs(auto_loop = True):
         if auto_loop == False:
             break
         time.sleep(2)
-            # show_rgb_colors(aa,image)
-            # print(decode_value)
 
 def process_d_logs(auto_loop = True):
     conn = Database.get_connection()
@@ -182,13 +164,13 @@ def process_d_logs(auto_loop = True):
                 batch.append(tuple(decode_value))
                 r.delete(decode_key)
             if len(batch) > 0:
-                # try:
-                query = 'INSERT INTO "DetectionLog" ("cameraId", "camera_ip", "timestamp", "boxCoords", "detectionClass", "trackId", "classConfidence", "metadata") VALUES %s;'
-                execute_values(cursor, query, batch)
-                conn.commit()
-                batch = []
-                # except:
-                #     print("unable to save to DB")
+                try:
+                    query = 'INSERT INTO "DetectionLog" ("cameraId", "camera_ip", "boxCoords", "detectionClass", "trackId", "classConfidence", "metadata", "topColor", "bottomColor") VALUES %s;'
+                    execute_values(cursor, query, batch)
+                    conn.commit()
+                    batch = []
+                except:
+                    print("unable to save to DB")
         if auto_loop == False:
             break
         time.sleep(2)
@@ -201,7 +183,7 @@ def process_raw_cc_logs(auto_loop = True):
             value = r.get(key)
             decode_key = key.decode()
             decode_value = value.decode().split('|')
-            uuid = decode_value[2]
+            uuid = decode_value[1]
             try:
                 image_data = r.get(f"{uuid}:image")
                 np_arr = np.frombuffer(image_data,np.uint8)
@@ -209,9 +191,11 @@ def process_raw_cc_logs(auto_loop = True):
                 image = image.reshape(-1,image.shape[2])
                 # image = cv2.imread(f"{PARENT_DIR}/backend/stream/cc_temp/{decode_value[2]}.jpg")
                 crowd_count, crowd_confidence = crowd_count_on_frame(image)
-                r.set(f"{decode_key}:cc_log",f"{decode_value[0]}|{decode_value[1]}|{crowd_count}|{crowd_confidence}")
+                print(crowd_confidence)
+                r.set(f"{decode_key}:cc_log",f"{decode_value[0]}|{crowd_count}|{crowd_confidence}")
                 r.delete(decode_key)
             except:
+                print("deleted")
                 r.delete(decode_key)
         if auto_loop == False:
             break
@@ -229,10 +213,11 @@ def process_cc_logs(auto_loop = True):
                 decode_key = key.decode()
                 decode_value = value.decode().split("|")
                 batch.append(tuple(decode_value))
+                print(decode_value)
                 r.delete(decode_key)
             if len(batch) > 0:
                 try:
-                    query = 'INSERT INTO "CrowdCount" ("camera_ip", "timestamp", "count", "confidence") VALUES %s;'
+                    query = 'INSERT INTO "CrowdCount" ("camera_ip", "count", "confidence") VALUES %s;'
                     execute_values(cursor, query, batch)
                     conn.commit()
                     batch = []
@@ -242,3 +227,9 @@ def process_cc_logs(auto_loop = True):
         if auto_loop == False:
             break
         time.sleep(2)
+
+# async def async_pool():
+#     await asyncio.gather(process_raw_d_logs(), process_d_logs(), process_raw_cc_logs(), process_cc_logs())
+
+# def open_async_pool():
+#     asyncio.run(async_pool())

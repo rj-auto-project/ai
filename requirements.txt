@@ -1,0 +1,10 @@
+tensorflow
+pillow
+joblib
+numpy
+opencv-python
+ultralytics
+redis
+torch
+python-dotenv
+psy
