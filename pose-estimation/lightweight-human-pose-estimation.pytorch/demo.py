@@ -1,15 +1,12 @@
 import argparse
-
 import cv2
 import numpy as np
 import torch
-
 from models.with_mobilenet import PoseEstimationWithMobileNet
 from modules.keypoints import extract_keypoints, group_keypoints
 from modules.load_state import load_state
 from modules.pose import Pose, track_poses
 from val import normalize, pad_width
-
 
 class ImageReader(object):
     def __init__(self, file_names):
@@ -143,7 +140,7 @@ if __name__ == '__main__':
                        Please, consider c++ demo for the best performance.''')
     parser.add_argument('--checkpoint-path', type=str, required=False, help='path to the checkpoint', default="/home/annone/ai/models/checkpoint_iter_370000.pth")
     parser.add_argument('--height-size', type=int, default=256, help='network input layer height size')
-    parser.add_argument('--video', type=str, default=0, help='path to video file or camera id')
+    parser.add_argument('--video', type=str, default="data/Bapu Bazar Near Satguru Textile.mp4", help='path to video file or camera id')
     parser.add_argument('--images', nargs='+', default='', help='path to input image(s)')
     parser.add_argument('--cpu', action='store_true', help='run network inference on cpu')
     parser.add_argument('--track', type=int, default=1, help='track pose id in video')

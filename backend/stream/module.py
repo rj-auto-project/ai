@@ -234,3 +234,78 @@ def process_cc_logs(auto_loop = True):
 
 # def open_async_pool():
 #     asyncio.run(async_pool())
+
+
+def is_within_offset(last_position, current_loc, offset):
+    """Check if the current location is within the offset range of the last position."""
+    if last_position is None:
+        return False
+    distance = np.linalg.norm(np.array(current_loc) - np.array(last_position))
+    return distance <= offset
+
+def is_point_in_polygon(point, polygon):
+    return cv2.pointPolygonTest(polygon, point, False) >= 0
+
+def draw_lines_and_text(frame,red_lines,green_lines, traffic_violation_count):
+    """Draw the red and green lines on the frame and display the traffic violation count."""
+    for i, ((x_start, y_start), (x_end, y_end)) in enumerate(red_lines):
+        cv2.line(frame, (x_start, y_start), (x_end, y_end), (0, 0, 255), 1)
+        cv2.putText(frame, f"Red {i + 1}", (x_start, y_start - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 1)
+
+    for i, ((x_start, y_start), (x_end, y_end)) in enumerate(green_lines):
+        cv2.line(frame, (x_start, y_start), (x_end, y_end), (0, 255, 0), 1)
+        cv2.putText(frame, f"Green {i + 1}", (x_start, y_start - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 1)
+
+    cv2.rectangle(frame, (0, 0), (350, 50), (0, 255, 255), 1)
+    cv2.putText(frame, f'Traffic Violations - {traffic_violation_count}', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 0), 1, cv2.LINE_AA)
+
+
+def calculate_speed(last_position, current_loc, fps):
+    """ Calculate the speed of the object based on the distance covered between frames """
+    if last_position is None:
+        return 0
+    distance = np.linalg.norm(np.array(current_loc) - np.array(last_position))
+    speed = distance * fps
+    return speed
+
+def is_within_range(x, y, y_min, y_max, x_min, x_max):
+    return y_min <= y <= y_max and x_min <= x <= x_max
+
+def check_traffic_violation(cx, cy, track_id, rlv_crossed_objects, rlv_violated_objects, frame, red_line_ranges_np,green_line_ranges_np):
+    for i, (y_min, y_max, x_min, x_max) in enumerate(red_line_ranges_np):
+        if is_within_range(cx, cy, y_min, y_max, x_min, x_max):
+            rlv_crossed_objects.setdefault(track_id, set()).add(f"red_{i}")
+            cv2.putText(frame, "crossed red", (cx + 10, cy - 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 1)
+            print("crossed red")
+            break
+
+    for i, (y_min, y_max, x_min, x_max) in enumerate(green_line_ranges_np):
+        if is_within_range(cx, cy, y_min, y_max, x_min, x_max):
+            if f"red_{i}" in rlv_crossed_objects.get(track_id, set()) and track_id not in rlv_violated_objects:
+                cv2.putText(frame, "crossed green", (cx + 10, cy - 30), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 1)
+                print("crossed green")
+                return True
+
+    return False
+
+def check_wrong_way_violation(cx, cy, track_id, ww_crossed_objects, ww_violated_objects, ww_red_lines_np, ww_green_lines_np, ww_offset, frame):
+    crossed_red = False
+    crossed_green = False
+
+    ww_crossed_objects.setdefault(track_id, {'red': set(), 'green': set()})
+
+    for i, ((x_start, y_start), (x_end, y_end)) in enumerate(ww_red_lines_np):
+        if min(y_start, y_end) - ww_offset <= cy <= max(y_start, y_end) + ww_offset and min(x_start, x_end) <= cx <= max(x_start, x_end):
+            ww_crossed_objects[track_id]['red'].add(i)
+            crossed_red = True
+            break
+
+    for i, ((x_start, y_start), (x_end, y_end)) in enumerate(ww_green_lines_np):
+        if min(y_start, y_end) - ww_offset <= cy <= max(y_start, y_end) + ww_offset and min(x_start, x_end) <= cx <= max(x_start, x_end):
+            ww_crossed_objects[track_id]['green'].add(i)
+            crossed_green = True
+            break
+
+    if crossed_red and crossed_green and track_id not in ww_violated_objects:
+        return True
+    return False
