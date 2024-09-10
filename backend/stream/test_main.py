@@ -15,13 +15,15 @@ import tracemalloc
 
 tracemalloc.start()
 
+# global variables
+
 PARENT_DIR = "/home/annone/ai"
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 model = YOLO("/home/annone/ai/models/objseg50e.pt")
 model.to(device)
-
 r = redis.Redis(host='localhost', port=6379, db=0)
 custom_track_ids = {}
+track_ids_inframe = {}
 print(device)
 
 def clear_redis_database():
@@ -187,9 +189,12 @@ def check_wrong_way_violation(cx, cy, track_id, ww_crossed_objects, ww_violated_
 def stream_process(camera_id, camera_ip, video_path):
     global traffic_violation_count, ww_offset, wrong_way_violation_count
     # clear_redis_database()
-    executor = create_thread_pool(4)
-    # executor.submit(process_raw_d_logs)
-    # executor.submit(process_d_logs)
+    executor = create_thread_pool(6)
+    executor.submit(process_raw_d_logs)
+    executor.submit(process_raw_d_logs)
+    executor.submit(process_raw_d_logs)
+    executor.submit(process_raw_d_logs)
+    executor.submit(process_d_logs)
     # executor.submit(process_raw_cc_logs)
     # executor.submit(process_cc_logs)
 
@@ -203,8 +208,9 @@ def stream_process(camera_id, camera_ip, video_path):
     start_time = time.time()
     fps = cap.get(cv2.CAP_PROP_FPS)
     fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-    out = cv2.VideoWriter("/home/annone/ai/backend/stream/output.mp4", fourcc, fps, (width, height))
+    out = cv2.VideoWriter("/home/annone/ai/data/output.mp4", fourcc, fps, (width, height))
 
+    t1 = time.time()
     while cap.isOpened():
         ret, ori_frame = cap.read()
         if not ret:
@@ -229,27 +235,47 @@ def stream_process(camera_id, camera_ip, video_path):
                         custom_track_ids[track_id] = generate_custom_string(
                             camera_ip, track_id
                         )
+                    # if track_id not in track_ids_inframe:
+                    #     track_ids_inframe[track_id] = track_id
                     custom_id = custom_track_ids[track_id]
-                    # cv2.fillPoly(null_mask, [points], 255)
-                    # polygon_image = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
-                    # polygon_image[:, :, 3] = null_mask
+                    cv2.fillPoly(null_mask, [points], 255)
+                    polygon_image = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+                    polygon_image[:, :, 3] = null_mask
                     x, y, w, h = cv2.boundingRect(points)
                     cx, cy = (x + w // 2, y + h // 2)
                     current_loc = (cx, cy)
                     last_position = last_positions.get(track_id)
                     speed = calculate_speed(last_position, current_loc, fps)
                     last_positions[track_id] = current_loc
-                    # cropped_polygon_image = polygon_image[y:y+h, x:x+w]
+                    cropped_polygon_image = polygon_image[y:y+h, x:x+w]
                     detection_img_name = f"{random.randint(1,999)}_{custom_id}_{random.randint(1,999)}"
-                    # _, buffer = cv2.imencode('.png', cropped_polygon_image)
-                    # r.set(f"{detection_img_name}:image", buffer.tobytes())
+                    _, buffer = cv2.imencode('.png', cropped_polygon_image)
+                    r.set(f"{detection_img_name}:image", buffer.tobytes())
                     cv2.circle(frame,(cx,cy),2,(0, 255, 0))
                     cv2.putText(frame, f'{label}, Speed: {speed:.2f} px/s',
                                 (int(x), int(y - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
                     data_string = f"{camera_id}|{camera_ip}|[{x},{y},{w},{h}]|{label}|{custom_id}|{confidence}|{detection_img_name}"
+#                     """
+
+# {
+# "23vgv4gv3432sfsfd4432":
+#     {
+#         cam_id:2,
+#         cam_ip:12.23.23.34,
+#         bbox:[[1,2,3,4],[24,5,6,2]],
+#         dlabel:[auto,bike],
+#         flabel:"auto",
+#         dconfidenc:[0.28982,0.999882]
+#         fconf:"0.99982"
+#         dcolor:[[red,yellow],[blue, red, green]]
+#         fcolor:red,yellow
+#         dimg:[utf8, utf8]
+#     }
+# }
+# """
                     r.set(f"{detection_img_name}:raw_d_log", data_string)
 
-                    ### ILLEGAL PARKING     
+                    ### ILLEGAL PARKING
                     if is_point_in_polygon(current_loc, illegal_parking_polygon):
                         if speed < 1e-2 or is_within_offset(last_position, current_loc, STATIONARY_OFFSET):
                             if track_id in stationary_objects:
@@ -281,7 +307,7 @@ def stream_process(camera_id, camera_ip, video_path):
                                 traffic_violation_count += 1
                                 rlv_violated_objects.add(track_id)
 
-                    ### WRONG WAY DRIVING
+                    # ### WRONG WAY DRIVING
                     if track_id not in ww_crossed_objects:
                         ww_crossed_objects[track_id] = {'red': set(), 'green': set()}
 
@@ -321,10 +347,10 @@ def stream_process(camera_id, camera_ip, video_path):
             cv2.line(frame, start_point, end_point, (0, 255, 0), 1)
             cv2.putText(frame, "ww", (start_point[0], start_point[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
-        ### ILLEGAL PARKING AREA DRWAING
-        # cv2.polylines(frame, [illegal_parking_polygon], isClosed=True, color=(0, 255, 255), thickness=1)
+        ## ILLEGAL PARKING AREA DRWAING
+        cv2.polylines(frame, [illegal_parking_polygon], isClosed=True, color=(0, 255, 255), thickness=1)
 
-        ### RED LIGHT VIOLATION LINE DRAWING
+        ## RED LIGHT VIOLATION LINE DRAWING
         for i, ((x_start, y_start), (x_end, y_end)) in enumerate(red_lines):
             cv2.line(frame, (x_start, y_start), (x_end, y_end), (0, 0, 255), 1)
             cv2.putText(frame, f"rlv {i + 1}", (x_start, y_start - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 255), 1)
@@ -346,8 +372,11 @@ def stream_process(camera_id, camera_ip, video_path):
             shutdown_thread(executor)
             break
     cap.release()
-    out.release()
+    # out.release()
     cv2.destroyAllWindows()
+    t2 = time.time()
+    print(t2-t1)
+
 
 # STATIC ARGUMENTS
 

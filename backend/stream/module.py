@@ -130,6 +130,7 @@ def process_raw_d_logs(auto_loop = True):
             value = r.get(key)
             decode_key = key.decode()
             decode_value = value.decode().split("|")
+            print(decode_value)
             uuid = decode_value[6]
             try:
                 image_data = r.get(f"{uuid}:image")
