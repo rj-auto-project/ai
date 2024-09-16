@@ -26,7 +26,7 @@ r = redis.Redis(host='localhost', port=6379, db=0)
 custom_track_ids = {}
 track_ids_inframe = {}
 print(device)
- 
+
 def clear_redis_database():
     r.flushdb()
     print("Redis database cleared.")
@@ -232,49 +232,49 @@ def stream_process(camera_id, camera_ip, video_path):
                     points = np.int32([mask])
                     confidence = box.conf[0]
                     label = model.names[int(box.cls[0])]
-                    if track_id not in custom_track_ids:
-                        custom_track_ids[track_id] = generate_custom_string(
-                            camera_ip, track_id
-                        )
-                    custom_id = custom_track_ids[track_id]
-                    cv2.fillPoly(null_mask, [points], 255)
-                    polygon_image = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
-                    polygon_image[:, :, 3] = null_mask
+                #     if track_id not in custom_track_ids:
+                #         custom_track_ids[track_id] = generate_custom_string(
+                #             camera_ip, track_id
+                #         )
+                #     custom_id = custom_track_ids[track_id]
+                #     cv2.fillPoly(null_mask, [points], 255)
+                #     polygon_image = cv2.cvtColor(frame, cv2.COLOR_BGR2BGRA)
+                #     polygon_image[:, :, 3] = null_mask
                     x, y, w, h = cv2.boundingRect(points)
-                    cx, cy = (x + w // 2, y + h // 2)
-                    current_loc = (cx, cy)
-                    last_position = last_positions.get(track_id)
-                    speed = calculate_speed(last_position, current_loc, fps)
-                    last_positions[track_id] = current_loc
-                    cropped_polygon_image = polygon_image[y:y+h, x:x+w].tobytes()
-                    detection_img_name = f"{random.randint(1,999)}_{custom_id}_{random.randint(1,999)}"
-                    # _, buffer = cv2.imencode('.png', cropped_polygon_image)
-                    # r.set(f"{detection_img_name}:image", buffer.tobytes())
-                    cv2.circle(frame,(cx,cy),2,(0, 255, 0))
-                    cv2.putText(frame, f'{label}, Speed: {speed:.2f} px/s',
-                                (int(x), int(y - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
-                    data_string = f"{camera_id}|{camera_ip}|[{x},{y},{w},{h}]|{label}|{custom_id}|{confidence}|{detection_img_name}"
-                    if custom_id not in track_ids_inframe:
-                        track_ids_inframe[custom_id] = {
-                        "camera_id":camera_id,
-                        "camera_ip":camera_ip,
-                        "dbbox":[[x,y,w,h]],
-                        "dlabel":[label],
-                        "dconf":[confidence],
-                        "dimg":[cropped_polygon_image]
-                        }
-                    else:
-                        track_ids_inframe[custom_id]["dbbox"].append([x,y,w,h])
-                        track_ids_inframe[custom_id]["dlabel"].append(label)
-                        track_ids_inframe[custom_id]["dconf"].append(confidence)
-                        track_ids_inframe[custom_id]["dimg"].append(cropped_polygon_image)
+                #     cx, cy = (x + w // 2, y + h // 2)
+                #     current_loc = (cx, cy)
+                #     last_position = last_positions.get(track_id)
+                #     speed = calculate_speed(last_position, current_loc, fps)
+                #     last_positions[track_id] = current_loc
+                #     cropped_polygon_image = polygon_image[y:y+h, x:x+w].tobytes()
+                #     detection_img_name = f"{random.randint(1,999)}_{custom_id}_{random.randint(1,999)}"
+                #     # _, buffer = cv2.imencode('.png', cropped_polygon_image)
+                #     # r.set(f"{detection_img_name}:image", buffer.tobytes())
+                #     cv2.circle(frame,(cx,cy),2,(0, 255, 0))
+                #     cv2.putText(frame, f'{label}, Speed: {speed:.2f} px/s',
+                #                 (int(x), int(y - 10)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+                #     data_string = f"{camera_id}|{camera_ip}|[{x},{y},{w},{h}]|{label}|{custom_id}|{confidence}|{detection_img_name}"
+                #     if custom_id not in track_ids_inframe:
+                #         track_ids_inframe[custom_id] = {
+                #         "camera_id":camera_id,
+                #         "camera_ip":camera_ip,
+                #         "dbbox":[[x,y,w,h]],
+                #         "dlabel":[label],
+                #         "dconf":[confidence],
+                #         "dimg":[cropped_polygon_image]
+                #         }
+                #     else:
+                #         track_ids_inframe[custom_id]["dbbox"].append([x,y,w,h])
+                #         track_ids_inframe[custom_id]["dlabel"].append(label)
+                #         track_ids_inframe[custom_id]["dconf"].append(confidence)
+                #         track_ids_inframe[custom_id]["dimg"].append(cropped_polygon_image)
 
-                    ended_ids = track_ids_inframe.keys() - custom_track_ids
-                    for id in ended_ids:
-                        serialized_data = pickle.dumps(track_ids_inframe[id])
-                        r.set(f"{id}:new",serialized_data) 
+                #     ended_ids = track_ids_inframe.keys() - custom_track_ids
+                #     for id in ended_ids:
+                #         serialized_data = pickle.dumps(track_ids_inframe[id])
+                #         r.set(f"{id}:new",serialized_data) 
 
-# """
+#                     """
 
 # {
 # "23vgv4gv3432sfsfd4432":

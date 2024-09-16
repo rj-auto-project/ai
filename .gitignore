@@ -167,3 +167,5 @@ models/
 ColoursRJ/
 data/
 
+output/
+mot_benchmark

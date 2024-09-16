@@ -92,56 +92,10 @@
 
 
 
+from test_main import stream_process
 
-import redis
-import pickle
-import numpy as np
-
-# Initialize Redis client
-r = redis.Redis(host='localhost', port=6379, db=0)
-
-def store_string_and_images_in_redis(redis_key, my_string, images):
-    # Create a dictionary with the string and the numpy array
-    data = {
-        'string': my_string,
-        'images': images
-    }
-    data['string'] = "new string"
-    # Serialize the dictionary using pickle
-    serialized_data = pickle.dumps(data)
-    
-    # Store the serialized data in Redis with the given key
-    r.set(redis_key, serialized_data)
-
-def retrieve_data_from_redis(redis_key):
-    # Retrieve the serialized data from Redis
-    serialized_data = r.get(redis_key)
-    
-    if serialized_data:
-        # Deserialize the data using pickle
-        data = pickle.loads(serialized_data)
-        return data
-    else:
-        return None
-
-# Example usage
-if __name__ == "__main__":
-    # Example string
-    my_string = "This is a test string"
-    
-    # Example array of images (as numpy arrays)
-    img1 = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)  # Random image 1
-    img2 = np.random.randint(0, 256, (100, 100, 3), dtype=np.uint8)  # Random image 2
-    images = [img1, img2]  # List of images
-    
-    # Store the string and images in Redis under a single key
-    store_string_and_images_in_redis('my_data_key', my_string, images)
-    
-    # Retrieve the data from Redis
-    data = retrieve_data_from_redis('my_data_key')
-    
-    if data:
-        print("Retrieved String:", data['string'])
-        print("Retrieved Images:", len(data['images']), "images")
-
+video_path = '/home/annone/ai/data/T-pole wrong way.mp4'
+cam_ip = '127.0.0.1'
+cam_id = "1"
+stream_process(cam_id, cam_ip,video_path)
 

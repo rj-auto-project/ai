@@ -9,13 +9,15 @@ import sys
 import time
 import random
 import string
-import joblib
 from db import Database
 import numpy as np
 from sklearn.cluster import KMeans
 import redis
 from psycopg2.extras import execute_values
-import asyncio
+from collections import Counter, defaultdict
+import redis
+import psycopg2
+import ast  # To convert string representation of lists/dicts from Redis into Python objects
 
 ### GLOBAL VARIABLE AND MODELS
 r = redis.Redis(host='localhost', port=6379, db=0)
@@ -309,3 +311,91 @@ def check_wrong_way_violation(cx, cy, track_id, ww_crossed_objects, ww_violated_
     if crossed_red and crossed_green and track_id not in ww_violated_objects:
         return True
     return False
+
+# Function to get top 5 labels from Redis, process, and insert into PostgreSQL
+def process_and_store_top5_detections():
+    # Fetch all keys from Redis
+    keys = r.keys()
+    
+    # Initialize lists to gather label, confidence, and bounding box data
+    label_list = []
+    conf_list = []
+    bbox_list = []
+    track_info_list = []
+
+    # Iterate over all keys to get data
+    for key in keys:
+        data = r.get(key)
+        if data:
+            # Convert Redis data (string) back to a dictionary
+            data_dict = ast.literal_eval(data.decode("utf-8"))
+
+            # Extract `dlabel`, `dconf`, `dbbox`, `firstAppearance`, `lastAppearance`, `custom_track_id`
+            labels = data_dict.get('dlabel', [])
+            confs = data_dict.get('dconf', [])
+            bboxes = data_dict.get('dbbox', [])
+            first_appearance = data_dict.get('first_appearance', None)
+            last_appearance = data_dict.get('last_appearance', None)
+            custom_track_id = data_dict.get('custom_track_id', None)
+
+            # Extend the lists with values from each track
+            label_list.extend(labels)
+            conf_list.extend(confs)
+            bbox_list.extend(bboxes)
+
+            # Append track info for PostgreSQL insert later
+            track_info_list.append({
+                "first_appearance": first_appearance,
+                "last_appearance": last_appearance,
+                "custom_track_id": custom_track_id
+            })
+
+    # Calculate the top 5 most frequent labels
+    label_counter = Counter(label_list)
+    top_5_labels = label_counter.most_common(5)
+
+    # Prepare the data for the top 5 labels
+    top_5_data = []
+    for label, count in top_5_labels:
+        # Find the indices where this label appears in the label_list
+        indices = [i for i, lbl in enumerate(label_list) if lbl == label]
+
+        # Gather corresponding confs and bboxes for this label
+        top_conf = [conf_list[i] for i in indices]
+        top_bbox = [bbox_list[i] for i in indices]
+
+        # Append this label's data
+        top_5_data.append({
+            "label": label,
+            "conf": top_conf,
+            "bbox": top_bbox
+        })
+
+    # Now insert into PostgreSQL
+    conn = Database.get_connection()
+    cursor = conn.cursor()
+
+    for track_info, label_data in zip(track_info_list, top_5_data):
+        try:
+            cursor.execute("""
+                INSERT INTO DetectionLogs (dlabels, dconfs, dbbox, firstAppearance, lastAppearance, customTrackID)
+                VALUES (%s, %s, %s, %s, %s, %s)
+            """, (
+                [label_data['label']], 
+                label_data['conf'], 
+                label_data['bbox'], 
+                track_info['first_appearance'], 
+                track_info['last_appearance'], 
+                track_info['custom_track_id']
+            ))
+        except Exception as e:
+            print(f"Error inserting into PostgreSQL: {e}")
+            conn.rollback()
+        else:
+            conn.commit()
+
+    cursor.close()
+    conn.close()
+
+# Call the function to fetch from Redis, process, and store in PostgreSQL
+process_and_store_top5()
