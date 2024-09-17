@@ -312,90 +312,66 @@ def check_wrong_way_violation(cx, cy, track_id, ww_crossed_objects, ww_violated_
         return True
     return False
 
-# Function to get top 5 labels from Redis, process, and insert into PostgreSQL
-def process_and_store_top5_detections():
+def process_and_store_detections():
     # Fetch all keys from Redis
-    keys = r.keys()
+    keys = r.keys('*')
     
-    # Initialize lists to gather label, confidence, and bounding box data
-    label_list = []
-    conf_list = []
-    bbox_list = []
-    track_info_list = []
+    # PostgreSQL connection setup
+    conn = Database.get_connection()
+    cursor = conn.cursor()
 
-    # Iterate over all keys to get data
+    # Iterate over all Redis keys
     for key in keys:
         data = r.get(key)
         if data:
             # Convert Redis data (string) back to a dictionary
             data_dict = ast.literal_eval(data.decode("utf-8"))
 
-            # Extract `dlabel`, `dconf`, `dbbox`, `firstAppearance`, `lastAppearance`, `custom_track_id`
-            labels = data_dict.get('dlabel', [])
-            confs = data_dict.get('dconf', [])
+            # Extract necessary fields
+            custom_track_id = data_dict.get('custom_track_id')
+            camera_id = data_dict.get('camera_id')
+            camera_ip = data_dict.get('camera_ip')
+            first_appearance = data_dict.get('first_appearance')
+            last_appearance = data_dict.get('last_appearance')
             bboxes = data_dict.get('dbbox', [])
-            first_appearance = data_dict.get('first_appearance', None)
-            last_appearance = data_dict.get('last_appearance', None)
-            custom_track_id = data_dict.get('custom_track_id', None)
+            dlabels = data_dict.get('dlabel', [])
+            dconfs = data_dict.get('dconf', [])
 
-            # Extend the lists with values from each track
-            label_list.extend(labels)
-            conf_list.extend(confs)
-            bbox_list.extend(bboxes)
+            # If there are multiple labels, average them by selecting the most frequent one
+            if dlabels:
+                label_counter = Counter(dlabels)
+                most_frequent_label = label_counter.most_common(1)[0][0]  # Get most frequent label
+                corresponding_confs = [dconfs[i] for i, label in enumerate(dlabels) if label == most_frequent_label]
+                corresponding_bboxes = [bboxes[i] for i, label in enumerate(dlabels) if label == most_frequent_label]
+                avg_conf = sum(corresponding_confs) / len(corresponding_confs) if corresponding_confs else None
+            else:
+                most_frequent_label = None
+                avg_conf = None
+                corresponding_bboxes = []
 
-            # Append track info for PostgreSQL insert later
-            track_info_list.append({
-                "first_appearance": first_appearance,
-                "last_appearance": last_appearance,
-                "custom_track_id": custom_track_id
-            })
-
-    # Calculate the top 5 most frequent labels
-    label_counter = Counter(label_list)
-    top_5_labels = label_counter.most_common(5)
-
-    # Prepare the data for the top 5 labels
-    top_5_data = []
-    for label, count in top_5_labels:
-        # Find the indices where this label appears in the label_list
-        indices = [i for i, lbl in enumerate(label_list) if lbl == label]
-
-        # Gather corresponding confs and bboxes for this label
-        top_conf = [conf_list[i] for i in indices]
-        top_bbox = [bbox_list[i] for i in indices]
-
-        # Append this label's data
-        top_5_data.append({
-            "label": label,
-            "conf": top_conf,
-            "bbox": top_bbox
-        })
-
-    # Now insert into PostgreSQL
-    conn = Database.get_connection()
-    cursor = conn.cursor()
-
-    for track_info, label_data in zip(track_info_list, top_5_data):
-        try:
-            cursor.execute("""
-                INSERT INTO DetectionLogs (dlabels, dconfs, dbbox, firstAppearance, lastAppearance, customTrackID)
-                VALUES (%s, %s, %s, %s, %s, %s)
-            """, (
-                [label_data['label']], 
-                label_data['conf'], 
-                label_data['bbox'], 
-                track_info['first_appearance'], 
-                track_info['last_appearance'], 
-                track_info['custom_track_id']
-            ))
-        except Exception as e:
-            print(f"Error inserting into PostgreSQL: {e}")
-            conn.rollback()
-        else:
-            conn.commit()
+            # Insert data into PostgreSQL
+            try:
+                cursor.execute("""
+                    INSERT INTO detectionLogs (customTrackID, cameraID, cameraIP, firstAppearance, lastAppearance, dlabel, dconf, dbbox)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                """, (
+                    custom_track_id, 
+                    camera_id, 
+                    camera_ip, 
+                    first_appearance, 
+                    last_appearance, 
+                    most_frequent_label, 
+                    avg_conf, 
+                    corresponding_bboxes
+                ))
+            except Exception as e:
+                print(f"Error inserting into PostgreSQL: {e}")
+                conn.rollback()
+            else:
+                conn.commit()
 
     cursor.close()
     conn.close()
 
-# Call the function to fetch from Redis, process, and store in PostgreSQL
-process_and_store_top5()
+# Call the function
+process_and_store_detections()
