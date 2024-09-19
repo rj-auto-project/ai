@@ -325,7 +325,7 @@ def get_video_frame_time(video_path, frame_number):
     return actual_time
 
 
-def read_license_plate(license_plate_crop, video_path, camera_id, frame_nmr):
+def read_license_plate(license_plate_crop):
     """
     Read the license plate text from the given cropped image.
 
@@ -336,6 +336,7 @@ def read_license_plate(license_plate_crop, video_path, camera_id, frame_nmr):
         tuple: Tuple containing the formatted license plate text and its confidence score.
     """
     detections = reader.readtext(license_plate_crop)
+    print(detections,"----")
     ip_id_dict = {"":"1","":"2","":"3","":"4","":"5"}
     for i, detection in enumerate(detections):
         bbox, text, score = detection
@@ -349,26 +350,26 @@ def read_license_plate(license_plate_crop, video_path, camera_id, frame_nmr):
             text = text.replace("\n", "")
             text = text.upper().replace(" ", "")
             print(text)
-        if license_complies_format(text):
-            formatted_licenses_num = format_license(text)
-            actual_time = get_video_frame_time(video_path, frame_nmr)
-            with open(
-                "/home/devendra/ai-camera/backend/apis/anpr/licese_numbers.csv",
-                "a",
-            ) as f:
-                f.write(
-                    "{},{},{}\n".format(video_path, formatted_licenses_num, actual_time)
-                )
-                f.close()
-            file_name = os.path.basename(video_path)
-            camera_ip, _ = os.path.splitext(file_name)
-            values = (f"{camera_id}", f"{camera_ip}", f"{formatted_licenses_num}", f"{actual_time}", f"{score}")
-            insert_into_table(values)
-            check_license_number(
-                file_path="/home/devendra/ai-camera/backend/apis/anpr/vehicle.csv",
-                license_number=formatted_licenses_num,
-            )
-            return formatted_licenses_num, score
+        # if license_complies_format(text):
+        #     formatted_licenses_num = format_license(text)
+        #     actual_time = get_video_frame_time(video_path, frame_nmr)
+        #     with open(
+        #         "/home/devendra/ai-camera/backend/apis/anpr/licese_numbers.csv",
+        #         "a",
+        #     ) as f:
+        #         f.write(
+        #             "{},{},{}\n".format(video_path, formatted_licenses_num, actual_time)
+        #         )
+        #         f.close()
+        #     file_name = os.path.basename(video_path)
+        #     camera_ip, _ = os.path.splitext(file_name)
+        #     values = (f"{camera_id}", f"{camera_ip}", f"{formatted_licenses_num}", f"{actual_time}", f"{score}")
+        #     insert_into_table(values)
+        #     check_license_number(
+        #         file_path="/home/devendra/ai-camera/backend/apis/anpr/vehicle.csv",
+        #         license_number=formatted_licenses_num,
+        #     )
+        #     return formatted_licenses_num, score
 
     return None, None
 
