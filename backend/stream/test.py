@@ -91,17 +91,12 @@
 
 
 
-
-
-
-
 import cv2
 import numpy as np
 import torch
 from ultralytics import YOLO
 from sort.sort import Sort
 import time
-# from module import generate_custom_string
 from collections import defaultdict
 import math
 import redis
@@ -112,7 +107,7 @@ import os
 # Initialize device and model
 r = redis.Redis(host='localhost', port=6379, db=0)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-model_file = os.path.abspath("./models/objseg50e.pt")
+model_file = os.path.abspath("/home/annone/ai/models/objseg50e.pt")
 model = YOLO(model_file)
 
 model.to(device)
@@ -135,7 +130,7 @@ custom_track_ids = {}
 known_track_ids = []
 
 # STREAMING CONSTANTS
-rtsp_url = 'rtsp://localhost:8554/stream'  # Update this URL as needed
+rtsp_url = 'rtsp://localhost:8554/stream1'  # Update this URL as needed
 
 # Construct the FFmpeg command
 ffmpeg_cmd = [
@@ -196,7 +191,7 @@ def track_objects(frames, batch_results, frame_time):
                 x1, y1, x2, y2 = box.xyxy[0].cpu().numpy()
                 score = box.conf[0].item()
                 label = model.names[int(box.cls[0])]
-                detections.append([x1, y1, x2, y2, score])
+                detections.append([x1, y1, x2, y2, score, int(box.cls[0])])
                 labels.append(label)
                 confs.append(score)
                 cv2.polylines(frame, [np.array(mask, dtype=np.int32)], isClosed=True, color=(0, 255, 0), thickness=1)
@@ -278,7 +273,7 @@ def stream_process(camera_id, camera_ip, video_path, batch_size=8):
                 cv2.imshow("Tracked Frame", tracked_frame)
                 process.stdin.write(tracked_frame.tobytes())
                 print("LLL")
-                out.write(tracked_frame)
+                # out.write(tracked_frame)
             frames = []
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
@@ -291,7 +286,7 @@ def stream_process(camera_id, camera_ip, video_path, batch_size=8):
     print(custom_track_ids)
 
 # Example usage
-video_path = './data/test.mp4'
+video_path = '/home/annone/ai/data/wrongway.mp4'
 cam_ip = '127.0.0.1'
 cam_id = "1"
 stream_process(cam_id, cam_ip, video_path, batch_size=2)
