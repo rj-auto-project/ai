@@ -49,6 +49,6 @@
 from util import read_license_plate
 import cv2
 
-img_f = cv2.imread("/home/annone/ai/backend/apis/anpr/jlp2.png")
-img = cv2.resize(img_f,(300,100))
+img_f = cv2.imread("/home/annone/ai/images/1010.jpg")
+img = cv2.resize(img_f,(500,300))
 read_license_plate(img)

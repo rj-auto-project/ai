@@ -29,11 +29,19 @@ class ViolationDetector:
                         }
         
          # Define your ROI points and lines
-        self.roi_points = np.array([[0, 0], [640, 0], [640, 480], [0, 480]], dtype=np.int32)
-        self.ww_red_line = [[(133, 251), (438, 251)]]
-        self.ww_green_line = [[(44, 390), (525, 390)]]
+
+        #  illegal parking area coords
+        self.roi_points = np.array([[0, 0], [1280, 0], [1280, 960], [0, 960]], dtype=np.int32)
+
+        # wrong way red lines
+        self.ww_red_line = [[(266, 502), (876, 502)]]
+        # wrong way green lines
+        self.ww_green_line = [[(88, 780), (1050, 780)]]
         
-        
+        # traffic violation red lines
+        self.tv_red_line = [[(266, 480), (876, 480)]]
+        # traffic violation red lines
+        self.tv_green_line = [[(88, 750), (1050, 750)],[(88, 750), (1050, 750)]]
         # Database connection setup
         self.db_connection = psycopg2.connect(
             host='34.47.148.81',
@@ -111,65 +119,55 @@ class ViolationDetector:
         if track_id not in self.crossed_objects:
             self.crossed_objects[track_id] = {'red': set(), 'green': set(), "label": label}
 
-        for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.ww_red_line):
+        for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.tv_red_line):
             if min(y_start, y_end) - self.offset <= cy <= max(y_start, y_end) + self.offset:
                 if min(x_start, x_end) <= cx <= max(x_start, x_end):
                     self.crossed_objects[track_id]['red'].add(f"red_{i}")
 
-        for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.ww_green_line):
+        for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.tv_green_line):
             if min(y_start, y_end) - self.offset <= cy <= max(y_start, y_end) + self.offset:
                 if min(x_start, x_end) <= cx <= max(x_start, x_end):
-                    if any(f"red_{j}" in self.crossed_objects[track_id]['red'] for j in range(len(self.ww_red_line))) and track_id not in self.violated_objects:
+                    if any(f"red_{j}" in self.crossed_objects[track_id]['red'] for j in range(len(self.tv_red_line))) and track_id not in self.violated_objects:
                         self.traffic_violation_count += 1
-                        self.violated_objects.add(track_id)  
+                        self.violated_objects.add(track_id)
     def process_image(self,cropped_image, model_path, track_id, cam_id, camera_ip):
-        print('urinationfunction')
-        # Initialize the detection and classification models
         detection_keypoint = DetectKeypoint()
         classification_keypoint = KeypointClassification(model_path)
-
-        # Read the image
-        image = cv2.imread(cropped_image)
+        # image = cv2.imread(cropped_image)
+        image = cropped_image
         if image is None:
             raise ValueError(f"Image not found at the path: {cropped_image}")
-
-        # Detect keypoints
         results = detection_keypoint(image)
-        results_keypoint = detection_keypoint.get_xy_keypoint(results)
+        input_classifications = [result[10:] if result != None else [] for result in results]
+        # print(results)
+        # for result in results:
+        #     # print(result)
+        #     if result:
+        #         input_classification = result[10:]  # Adjust based on your needs
+        #         print(input_classification,"================")
+        results_classification = classification_keypoint(input_classifications)
+        return results_classification
+        #     if results.boxes.xyxy.size(0) > 0:  # Check if there are any detected boxes
+        #         x_min, y_min, x_max, y_max = results.boxes.xyxy[0].cpu().numpy()
+        #         bbox = f"{x_min}, {y_min}, {x_max}, {y_max}"
+        #         label = results_classification.upper()
+        #         print(label)
+        #         # incident_type = results_classification
+        #         # self.save_violation_to_db(cam_id, track_id, camera_ip, bbox, incident_type)
+        #     print(f'Keypoint classification: {results_classification}')
 
-        # Prepare input for classification
-        input_classification = results_keypoint[10:]  # Adjust based on your needs
-        results_classification = classification_keypoint(input_classification)
-
-        # Visualize keypoints
-        image_draw = results.plot(boxes=False)
-
-        # Draw bounding box and classification label
-        if results.boxes.xyxy.size(0) > 0:  # Check if there are any detected boxes
-            x_min, y_min, x_max, y_max = results.boxes.xyxy[0].numpy()
-            bbox = f"{x_min}, {y_min}, {x_max}, {y_max}"
-            cv2.rectangle(image_draw, (int(x_min), int(y_min)), (int(x_max), int(y_max)), (0, 0, 255), 2)
-
-            label = results_classification.upper()
-            (w, h), _ = cv2.getTextSize(label, cv2.FONT_HERSHEY_SIMPLEX, 0.5, 2)
-            cv2.rectangle(image_draw, (int(x_min), int(y_min) - 20), (int(x_min) + w, int(y_min)), (0, 0, 255), -1)
-            cv2.putText(image_draw, label, (int(x_min), int(y_min) - 4), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), thickness=2)
-
-            incident_type = results_classification
-            self.save_violation_to_db(cam_id, track_id, camera_ip, bbox, incident_type)
-            
-        # Print classification result
-        print(f'Keypoint classification: {results_classification}')
-
-        # Show the image
-        cv2.imshow("frame", image_draw)
-        cv2.waitKey(0)
-        cv2.destroyAllWindows()                    
-                        
     def draw_lines_for_traffic_violation(self, frame, total_parking_violations):
         cv2.polylines(frame, [self.roi_points], isClosed=True, color=(255, 0, 0), thickness=2)
         cv2.putText(frame, "Illegal Parking Area", (self.roi_points[0][0], self.roi_points[0][1] - 10), 
                     cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 0, 0), 2)
+        for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.tv_red_line):
+            cv2.line(frame, (x_start, y_start), (x_end, y_end), (0, 0, 255), 2)
+            cv2.putText(frame, f"Red {i + 1}", (x_start, y_start - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)
+
+        for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.tv_green_line):
+            cv2.line(frame, (x_start, y_start), (x_end, y_end), (0, 255, 0), 2)
+            cv2.putText(frame, f"Green {i + 1}", (x_start, y_start - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 255, 0), 2)
+
         for i, ((x_start, y_start), (x_end, y_end)) in enumerate(self.ww_red_line):
             cv2.line(frame, (x_start, y_start), (x_end, y_end), (0, 0, 255), 2)
             cv2.putText(frame, f"Red {i + 1}", (x_start, y_start - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 0, 255), 2)

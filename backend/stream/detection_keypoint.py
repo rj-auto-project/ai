@@ -2,10 +2,12 @@ import sys
 import cv2
 import numpy as np
 from pydantic import BaseModel
-
+import torchvision.transforms as transforms
 import ultralytics
 from ultralytics.engine.results import Results
-
+from PIL import Image 
+import torch
+import time
 # Define keypoint
 class GetKeypoint(BaseModel):
     NOSE:           int = 0
@@ -27,14 +29,15 @@ class GetKeypoint(BaseModel):
     RIGHT_ANKLE:    int = 16
 
 class DetectKeypoint:
-    def __init__(self, yolov8_model='yolov8m-pose'):
+    def __init__(self, yolov8_model='/home/annone/ai/models/yolov8n-pose.pt', image_size=(320, 192)):
         self.yolov8_model = yolov8_model
+        self.image_size = image_size
         self.get_keypoint = GetKeypoint()
         self.__load_model()
 
     def __load_model(self):
-        if not self.yolov8_model.split('-')[-1] == 'pose':
-            sys.exit('Model not yolov8 pose')
+        # if not self.yolov8_model.split('-')[-1] == 'pose':
+        #     sys.exit('Model not yolov8 pose')
         self.model = ultralytics.YOLO(model=self.yolov8_model)
 
         # extract function keypoint
@@ -76,11 +79,37 @@ class DetectKeypoint:
         ]
     
     def get_xy_keypoint(self, results: Results) -> list:
-        result_keypoint = results.keypoints.xyn.cpu().numpy()[0]
-        keypoint_data = self.extract_keypoint(result_keypoint)
-        return keypoint_data
+        if hasattr(results, 'names') and results.keypoints is not None and results.keypoints.xyn is not None:
+            result_keypoint = results.keypoints.xyn.cpu().numpy()[0]
+            if len(result_keypoint) > 0:
+                keypoint_data = self.extract_keypoint(result_keypoint)
+                return keypoint_data
+            else:
+                return [0]*34
+        else:
+            return [0]*34
     
-    def __call__(self, image: np.array) -> Results:
-        results = self.model.predict(image, save=False)[0]
-        return results
+    def __call__(self, images: list) -> Results:
+        device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+        print(device)
+        resized_frames = [cv2.resize(image, (192 // 32 * 32, 320 // 32 * 32)) for image in images]
+        images_tensor = torch.from_numpy(np.stack(resized_frames)).permute(0, 3, 1, 2).float().to(device) / 255.0
+        # images_tensor = images_tensor.to(self.model.device)
 
+        # Perform inference with no gradient tracking
+        with torch.no_grad():
+            results = self.model.predict(images_tensor, save=False)
+            # print(results)
+        return [self.get_xy_keypoint(result) for result in results]
+
+# Example usage
+if __name__ == '__main__':
+    detector = DetectKeypoint('/home/annone/ai/models/yolov8n-pose.pt')
+    # Load or create a batch of images
+    batch_images = [cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'),cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'),cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'),cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png'), cv2.imread('/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png')]  # Add paths to your images
+    # batch_images = cv2.imread("/home/annone/ai/images/urination/3_person_0a20f5e2-355d-4999-86d9-6fd5c299bf85.png")
+    t1 = time.time()
+    keypoints = detector(batch_images)
+    t2 = time.time()
+    print(t2-t1)
+    print(keypoints)  # This will print keypoints for each image in the batch

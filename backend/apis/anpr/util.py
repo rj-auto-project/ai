@@ -5,8 +5,8 @@ import pandas as pd
 from datetime import datetime, timedelta
 import cv2
 import os
-import mysql.connector
-from mysql.connector import Error
+# import mysql.connector
+# from mysql.connector import Error
 
 
 # Initialize the OCR reader
