@@ -46,18 +46,9 @@
 
 # INSERTION
 
-from fastapi import FastAPI
-import uvicorn
-app = FastAPI()
+from util import read_license_plate
+import cv2
 
-@app.get("/srch_license_plate/")
-async def print_data(license_plate: str):
-    # Print the received data to the console
-    print(f"Received license_plate: {license_plate}")
-    
-    # Return a response to the frontend
-    return {"message": f"Received license_plate: {license_plate}"}
-
-# To run the server, use the command: uvicorn filename:app --reload
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=5667)
+img_f = cv2.imread("/home/annone/ai/images/1010.jpg")
+img = cv2.resize(img_f,(500,300))
+read_license_plate(img)
