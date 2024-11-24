@@ -1,0 +1,336 @@
+Detection Time: 2024-11-19 15:06:39, Lat: 26.9150048, Lon: 75.7416909, trackid : 41
+Detection Time: 2024-11-19 15:06:41.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 46
+Detection Time: 2024-11-19 15:06:44.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 51
+Detection Time: 2024-11-19 15:06:45.966667, Lat: 26.9150825, Lon: 75.7416004, trackid : 54
+Detection Time: 2024-11-19 15:06:46.633333, Lat: 26.9150825, Lon: 75.7416004, trackid : 55
+Detection Time: 2024-11-19 15:06:46.966667, Lat: 26.9150825, Lon: 75.7416004, trackid : 56
+Detection Time: 2024-11-19 15:06:48, Lat: 26.9150825, Lon: 75.7416004, trackid : 58
+Detection Time: 2024-11-19 15:06:48.266667, Lat: 26.9150825, Lon: 75.7416004, trackid : 59
+Detection Time: 2024-11-19 15:06:51.433333, Lat: 26.9150825, Lon: 75.7416004, trackid : 62
+Detection Time: 2024-11-19 15:06:39, Lat: 26.9150048, Lon: 75.7416909, trackid : 80
+Detection Time: 2024-11-19 15:06:39, Lat: 26.9150048, Lon: 75.7416909, trackid : 1
+Detection Time: 2024-11-19 15:06:41.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Detection Time: 2024-11-19 15:06:44.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 11
+Detection Time: 2024-11-19 15:06:45.966667, Lat: 26.9150825, Lon: 75.7416004, trackid : 14
+Detection Time: 2024-11-19 15:06:46.633333, Lat: 26.9150825, Lon: 75.7416004, trackid : 15
+Detection Time: 2024-11-19 15:06:46.966667, Lat: 26.9150825, Lon: 75.7416004, trackid : 16
+Detection Time: 2024-11-19 15:06:48, Lat: 26.9150825, Lon: 75.7416004, trackid : 18
+Detection Time: 2024-11-19 15:06:48.266667, Lat: 26.9150825, Lon: 75.7416004, trackid : 19
+Detection Time: 2024-11-19 15:06:51.433333, Lat: 26.9150825, Lon: 75.7416004, trackid : 22
+Detection Time: 2024-11-19 15:07:11.400000, Lat: 26.9150096, Lon: 75.7418507, trackid : 73
+Detection Time: 2024-11-19 15:07:16.800000, Lat: 26.9150803, Lon: 75.741986, trackid : 83
+Detection Time: 2024-11-19 15:07:25.533333, Lat: 26.9149767, Lon: 75.7423702, trackid : 104
+Detection Time: 2024-11-19 15:07:50.833333, Lat: 26.9150146, Lon: 75.7426286, trackid : 155
+Detection Time: 2024-11-19 15:08:11.866667, Lat: 26.9150119, Lon: 75.7430538, trackid : 195
+Detection Time: 2024-11-19 15:08:19.500000, Lat: 26.9150086, Lon: 75.7431502, trackid : 205
+Detection Time: 2024-11-19 15:08:20.966667, Lat: 26.9150086, Lon: 75.7431502, trackid : 210
+Detection Time: 2024-11-19 15:06:39, Lat: 26.9150048, Lon: 75.7416909, trackid : 237
+Detection Time: 2024-11-19 15:06:41.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 242
+Detection Time: 2024-11-19 15:06:44.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 247
+Detection Time: 2024-11-19 15:06:45.966667, Lat: 26.9150825, Lon: 75.7416004, trackid : 250
+Detection Time: 2024-11-19 15:06:46.633333, Lat: 26.9150825, Lon: 75.7416004, trackid : 251
+Detection Time: 2024-11-19 15:06:46.966667, Lat: 26.9150825, Lon: 75.7416004, trackid : 252
+Detection Time: 2024-11-19 15:06:48, Lat: 26.9150825, Lon: 75.7416004, trackid : 254
+Detection Time: 2024-11-19 15:06:48.266667, Lat: 26.9150825, Lon: 75.7416004, trackid : 255
+Detection Time: 2024-11-19 15:06:51.433333, Lat: 26.9150825, Lon: 75.7416004, trackid : 258
+Detection Time: 2024-11-19 15:07:11.400000, Lat: 26.9150096, Lon: 75.7418507, trackid : 309
+Detection Time: 2024-11-19 15:07:16.800000, Lat: 26.9150803, Lon: 75.741986, trackid : 319
+Detection Time: 2024-11-19 15:07:25.533333, Lat: 26.9149767, Lon: 75.7423702, trackid : 340
+Class: 4, Detection Time: 2024-11-16 17:41:53.033333, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 2, Detection Time: 2024-11-16 17:41:59.133333, Lat: 26.9150048, Lon: 75.7416909, trackid : 13
+Class: 2, Detection Time: 2024-11-16 17:41:59.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 17
+Class: 4, Detection Time: 2024-11-16 17:41:59.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 20
+Class: 2, Detection Time: 2024-11-16 17:42:02.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 27
+Class: 2, Detection Time: 2024-11-16 17:42:02.500000, Lat: 26.9150048, Lon: 75.7416909, trackid : 28
+Class: 4, Detection Time: 2024-11-16 17:42:03.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 30
+Class: 4, Detection Time: 2024-11-16 17:42:07.200000, Lat: 26.9150048, Lon: 75.7416909, trackid : 32
+Class: 2, Detection Time: 2024-11-16 17:42:11.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 38
+Class: 4, Detection Time: 2024-11-16 17:42:11.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 39
+Class: 2, Detection Time: 2024-11-16 17:42:12.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 41
+Class: 4, Detection Time: 2024-11-16 17:42:14.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 44
+Class: 2, Detection Time: 2024-11-16 17:42:15.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 49
+Class: 2, Detection Time: 2024-11-16 17:42:15.800000, Lat: 26.9150048, Lon: 75.7416909, trackid : 54
+Class: 4, Detection Time: 2024-11-16 17:42:17.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 64
+Class: 2, Detection Time: 2024-11-16 17:42:19.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 68
+Class: 2, Detection Time: 2024-11-16 17:42:20.033333, Lat: 26.9150048, Lon: 75.7416909, trackid : 69
+Class: 4, Detection Time: 2024-11-16 17:42:20.766667, Lat: 26.9150048, Lon: 75.7416909, trackid : 73
+Class: 1, Detection Time: 2024-11-16 17:42:23.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 82
+Class: 4, Detection Time: 2024-11-16 17:42:23.600000, Lat: 26.9150048, Lon: 75.7416909, trackid : 81
+Class: 2, Detection Time: 2024-11-16 17:42:24.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 84
+Class: 2, Detection Time: 2024-11-16 17:42:25.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 89
+Class: 2, Detection Time: 2024-11-16 17:42:25.933333, Lat: 26.9150048, Lon: 75.7416909, trackid : 93
+Class: 2, Detection Time: 2024-11-16 17:42:26.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 102
+Class: 2, Detection Time: 2024-11-16 17:42:26.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 99
+Class: 2, Detection Time: 2024-11-16 17:42:26.966667, Lat: 26.9150048, Lon: 75.7416909, trackid : 108
+Class: 2, Detection Time: 2024-11-16 17:42:28.133333, Lat: 26.9150048, Lon: 75.7416909, trackid : 114
+Class: 2, Detection Time: 2024-11-16 17:42:28.500000, Lat: 26.9150048, Lon: 75.7416909, trackid : 115
+Class: 4, Detection Time: 2024-11-16 17:42:30.033333, Lat: 26.9150048, Lon: 75.7416909, trackid : 135
+Class: 4, Detection Time: 2024-11-16 17:42:30.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 137
+Class: 2, Detection Time: 2024-11-16 17:42:34.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 153
+Class: 2, Detection Time: 2024-11-16 17:42:35.133333, Lat: 26.9150048, Lon: 75.7416909, trackid : 155
+Class: 2, Detection Time: 2024-11-16 17:42:36.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 161
+Class: 2, Detection Time: 2024-11-16 17:42:36.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 165
+Class: 2, Detection Time: 2024-11-16 17:42:36.766667, Lat: 26.9150048, Lon: 75.7416909, trackid : 168
+Class: 2, Detection Time: 2024-11-16 17:42:37.066667, Lat: 26.9150048, Lon: 75.7416909, trackid : 176
+Class: 2, Detection Time: 2024-11-16 17:42:38.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 193
+Class: 2, Detection Time: 2024-11-16 17:42:38.766667, Lat: 26.9150048, Lon: 75.7416909, trackid : 197
+Class: 4, Detection Time: 2024-11-16 17:42:07.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:42:17.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 5
+Class: 4, Detection Time: 2024-11-16 17:42:03.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:42:07.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 10
+Class: 4, Detection Time: 2024-11-16 17:42:11.600000, Lat: 26.9150048, Lon: 75.7416909, trackid : 13
+Class: 4, Detection Time: 2024-11-16 17:42:17.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 19
+Class: 4, Detection Time: 2024-11-16 17:42:17.833333, Lat: 26.9150048, Lon: 75.7416909, trackid : 20
+Class: 4, Detection Time: 2024-11-16 17:42:17.966667, Lat: 26.9150048, Lon: 75.7416909, trackid : 21
+Class: 4, Detection Time: 2024-11-16 17:42:20.933333, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 5, Detection Time: 2024-11-16 17:42:23.200000, Lat: 26.9150048, Lon: 75.7416909, trackid : 24
+Class: 4, Detection Time: 2024-11-16 17:42:03.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:42:07.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 10
+Class: 4, Detection Time: 2024-11-16 17:42:11.600000, Lat: 26.9150048, Lon: 75.7416909, trackid : 13
+Class: 4, Detection Time: 2024-11-16 17:42:17.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 19
+Class: 4, Detection Time: 2024-11-16 17:42:17.833333, Lat: 26.9150048, Lon: 75.7416909, trackid : 20
+Class: 4, Detection Time: 2024-11-16 17:42:17.966667, Lat: 26.9150048, Lon: 75.7416909, trackid : 21
+Class: 4, Detection Time: 2024-11-16 17:42:20.933333, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 5, Detection Time: 2024-11-16 17:42:23.200000, Lat: 26.9150048, Lon: 75.7416909, trackid : 24
+Class: 4, Detection Time: 2024-11-16 17:42:03.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:42:07.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 10
+Class: 4, Detection Time: 2024-11-16 17:42:03.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 19
+Class: 4, Detection Time: 2024-11-16 17:42:07.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 4, Detection Time: 2024-11-16 17:42:11.600000, Lat: 26.9150048, Lon: 75.7416909, trackid : 26
+Class: 4, Detection Time: 2024-11-16 17:42:17.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 32
+Class: 4, Detection Time: 2024-11-16 17:42:17.833333, Lat: 26.9150048, Lon: 75.7416909, trackid : 33
+Class: 4, Detection Time: 2024-11-16 17:42:17.966667, Lat: 26.9150048, Lon: 75.7416909, trackid : 34
+Class: 4, Detection Time: 2024-11-16 17:42:20.933333, Lat: 26.9150048, Lon: 75.7416909, trackid : 36
+Class: 5, Detection Time: 2024-11-16 17:42:23.200000, Lat: 26.9150048, Lon: 75.7416909, trackid : 37
+Class: 4, Detection Time: 2024-11-16 17:42:07.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:42:07.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:42:17.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 8
+Class: 4, Detection Time: 2024-11-16 17:42:07.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:42:17.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 5
+Class: 4, Detection Time: 2024-11-16 17:42:03.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 17
+Class: 4, Detection Time: 2024-11-16 17:42:07.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 21
+Class: 4, Detection Time: 2024-11-16 17:42:03.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:42:07.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 11
+Class: 4, Detection Time: 2024-11-16 17:42:17.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 13
+Class: 4, Detection Time: 2024-11-16 17:42:07.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:42:17.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 5
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:52.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 7
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:52.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 7
+Class: 4, Detection Time: 2024-11-16 17:41:58.800000, Lat: 26.9150048, Lon: 75.7416909, trackid : 13
+Class: 2, Detection Time: 2024-11-16 17:41:59.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 14
+Class: 4, Detection Time: 2024-11-16 17:41:59.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 15
+Class: 2, Detection Time: 2024-11-16 17:41:59.800000, Lat: 26.9150048, Lon: 75.7416909, trackid : 20
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:52.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 7
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:52.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 7
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 9
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 12
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:51, Lat: 26.9150048, Lon: 75.7416909, trackid : 3
+Class: 4, Detection Time: 2024-11-16 17:41:52.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 6
+Class: 4, Detection Time: 2024-11-16 17:41:52.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 7
+Class: 4, Detection Time: 2024-11-16 17:41:58.800000, Lat: 26.9150048, Lon: 75.7416909, trackid : 13
+Class: 2, Detection Time: 2024-11-16 17:41:59.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 14
+Class: 4, Detection Time: 2024-11-16 17:41:59.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 15
+Class: 2, Detection Time: 2024-11-16 17:41:59.800000, Lat: 26.9150048, Lon: 75.7416909, trackid : 20
+Class: 2, Detection Time: 2024-11-16 17:42:02.133333, Lat: 26.9150048, Lon: 75.7416909, trackid : 26
+Class: 4, Detection Time: 2024-11-16 17:42:03.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 29
+Class: 4, Detection Time: 2024-11-16 17:42:07.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 36
+Class: 2, Detection Time: 2024-11-16 17:42:10.700000, Lat: 26.9150048, Lon: 75.7416909, trackid : 40
+Class: 4, Detection Time: 2024-11-16 17:42:11.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 44
+Class: 2, Detection Time: 2024-11-16 17:42:12.066667, Lat: 26.9150048, Lon: 75.7416909, trackid : 48
+Class: 2, Detection Time: 2024-11-16 17:42:13.933333, Lat: 26.9150048, Lon: 75.7416909, trackid : 54
+Class: 4, Detection Time: 2024-11-16 17:42:14.100000, Lat: 26.9150048, Lon: 75.7416909, trackid : 55
+Class: 2, Detection Time: 2024-11-16 17:42:15.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 69
+Class: 2, Detection Time: 2024-11-16 17:42:15.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 71
+Class: 2, Detection Time: 2024-11-16 17:42:15.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 73
+Class: 2, Detection Time: 2024-11-16 17:42:16.066667, Lat: 26.9150048, Lon: 75.7416909, trackid : 83
+Class: 4, Detection Time: 2024-11-16 17:42:17.433333, Lat: 26.9150048, Lon: 75.7416909, trackid : 95
+Class: 2, Detection Time: 2024-11-16 17:42:17.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 97
+Class: 2, Detection Time: 2024-11-16 17:42:18.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 101
+Class: 2, Detection Time: 2024-11-16 17:42:19.033333, Lat: 26.9150048, Lon: 75.7416909, trackid : 104
+Class: 2, Detection Time: 2024-11-16 17:42:19.533333, Lat: 26.9150048, Lon: 75.7416909, trackid : 107
+Class: 4, Detection Time: 2024-11-16 17:42:20.766667, Lat: 26.9150048, Lon: 75.7416909, trackid : 122
+Class: 2, Detection Time: 2024-11-16 17:42:23, Lat: 26.9150048, Lon: 75.7416909, trackid : 132
+Class: 4, Detection Time: 2024-11-16 17:42:23.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 137
+Class: 2, Detection Time: 2024-11-16 17:42:23.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 136
+Class: 5, Detection Time: 2024-11-16 17:42:23.833333, Lat: 26.9150048, Lon: 75.7416909, trackid : 140
+Class: 2, Detection Time: 2024-11-16 17:42:24.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 141
+Class: 2, Detection Time: 2024-11-16 17:42:24.933333, Lat: 26.9150048, Lon: 75.7416909, trackid : 157
+Class: 2, Detection Time: 2024-11-16 17:42:25.833333, Lat: 26.9150048, Lon: 75.7416909, trackid : 166
+Class: 2, Detection Time: 2024-11-16 17:42:26.033333, Lat: 26.9150048, Lon: 75.7416909, trackid : 168
+Class: 2, Detection Time: 2024-11-16 17:42:26.166667, Lat: 26.9150048, Lon: 75.7416909, trackid : 169
+Class: 2, Detection Time: 2024-11-16 17:42:27, Lat: 26.9150048, Lon: 75.7416909, trackid : 190
+Class: 2, Detection Time: 2024-11-16 17:42:28, Lat: 26.9150048, Lon: 75.7416909, trackid : 200
+Class: 2, Detection Time: 2024-11-16 17:42:28.600000, Lat: 26.9150048, Lon: 75.7416909, trackid : 204
+Class: 2, Detection Time: 2024-11-16 17:42:28.733333, Lat: 26.9150048, Lon: 75.7416909, trackid : 205
+Class: 2, Detection Time: 2024-11-16 17:42:29.266667, Lat: 26.9150048, Lon: 75.7416909, trackid : 209
+Class: 2, Detection Time: 2024-11-16 17:42:29.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 211
+Class: 4, Detection Time: 2024-11-16 17:42:30.300000, Lat: 26.9150048, Lon: 75.7416909, trackid : 216
+Class: 2, Detection Time: 2024-11-16 17:42:31.066667, Lat: 26.9150048, Lon: 75.7416909, trackid : 230
+Class: 2, Detection Time: 2024-11-16 17:42:35.066667, Lat: 26.9150048, Lon: 75.7416909, trackid : 241
+Class: 2, Detection Time: 2024-11-16 17:42:35.566667, Lat: 26.9150048, Lon: 75.7416909, trackid : 244
+Class: 2, Detection Time: 2024-11-16 17:42:36.233333, Lat: 26.9150048, Lon: 75.7416909, trackid : 258
+Class: 2, Detection Time: 2024-11-16 17:42:36.866667, Lat: 26.9150048, Lon: 75.7416909, trackid : 260
+Class: 2, Detection Time: 2024-11-16 17:42:37.066667, Lat: 26.9150048, Lon: 75.7416909, trackid : 262
+Class: 2, Detection Time: 2024-11-16 17:42:38.466667, Lat: 26.9150048, Lon: 75.7416909, trackid : 276
+Class: 2, Detection Time: 2024-11-16 17:42:38.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 277
+Class: 2, Detection Time: 2024-11-19 15:06:40.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 9
+Class: 2, Detection Time: 2024-11-19 15:06:41.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 16
+Class: 2, Detection Time: 2024-11-19 15:06:44.900000, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 2, Detection Time: 2024-11-19 15:06:45.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 26
+Class: 2, Detection Time: 2024-11-19 15:06:45.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 25
+Class: 2, Detection Time: 2024-11-19 15:06:45.433333, Lat: 26.9150048, Lon: 75.7416909, trackid : 28
+Class: 2, Detection Time: 2024-11-19 15:06:45.666667, Lat: 26.9150048, Lon: 75.7416909, trackid : 31
+Class: 0, Detection Time: 2024-11-19 15:06:49.900000, Lat: 26.9150825, Lon: 75.7416004, trackid : 43
+Class: 0, Detection Time: 2024-11-19 15:06:50.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 51
+Class: 0, Detection Time: 2024-11-19 15:06:51.133333, Lat: 26.9150825, Lon: 75.7416004, trackid : 59
+Class: 0, Detection Time: 2024-11-19 15:06:51.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 65
+Class: 2, Detection Time: 2024-11-19 15:06:57, Lat: 26.9150328, Lon: 75.7418061, trackid : 73
+Class: 0, Detection Time: 2024-11-19 15:07:00.700000, Lat: 26.9149523, Lon: 75.7418846, trackid : 83
+Class: 0, Detection Time: 2024-11-19 15:07:01.066667, Lat: 26.9149523, Lon: 75.7418846, trackid : 84
+Class: 5, Detection Time: 2024-11-19 15:07:01.400000, Lat: 26.9149523, Lon: 75.7418846, trackid : 86
+Class: 0, Detection Time: 2024-11-19 15:07:01.933333, Lat: 26.9149523, Lon: 75.7418846, trackid : 92
+Class: 2, Detection Time: 2024-11-19 15:07:21.700000, Lat: 26.9149767, Lon: 75.7423702, trackid : 135
+Class: 2, Detection Time: 2024-11-19 15:07:21.933333, Lat: 26.9149767, Lon: 75.7423702, trackid : 139
+Class: 5, Detection Time: 2024-11-19 15:07:26.333333, Lat: 26.9149767, Lon: 75.7423702, trackid : 145
+Class: 0, Detection Time: 2024-11-19 15:07:27.666667, Lat: 26.9149495, Lon: 75.7424514, trackid : 150
+Class: 2, Detection Time: 2024-11-19 15:07:36.833333, Lat: 26.9149832, Lon: 75.7424307, trackid : 155
+Class: 5, Detection Time: 2024-11-19 15:08:12.366667, Lat: 26.9150119, Lon: 75.7430538, trackid : 202
+Class: 2, Detection Time: 2024-11-19 15:08:20.900000, Lat: 26.9150086, Lon: 75.7431502, trackid : 207
+Class: 5, Detection Time: 2024-11-19 15:08:42.133333, Lat: 26.9152315, Lon: 75.7436154, trackid : 228
+Class: 2, Detection Time: 2024-11-19 15:08:42.966667, Lat: 26.9152315, Lon: 75.7436154, trackid : 229
+Class: 2, Detection Time: 2024-11-19 15:08:43.400000, Lat: 26.9152315, Lon: 75.7436154, trackid : 231
+Class: 5, Detection Time: 2024-11-19 15:08:44.066667, Lat: 26.9152315, Lon: 75.7436154, trackid : 235
+Class: 2, Detection Time: 2024-11-19 15:08:47.833333, Lat: 26.9152315, Lon: 75.7436154, trackid : 251
+Class: 5, Detection Time: 2024-11-19 15:08:59.233333, Lat: 26.9152257, Lon: 75.7448582, trackid : 277
+Class: 5, Detection Time: 2024-11-19 15:09:02.166667, Lat: 26.9152257, Lon: 75.7448582, trackid : 278
+Class: 2, Detection Time: 2024-11-19 15:09:02.700000, Lat: 26.9152257, Lon: 75.7448582, trackid : 282
+Class: 2, Detection Time: 2024-11-19 15:09:19.300000, Lat: 26.9152257, Lon: 75.7448582, trackid : 310
+Class: 2, Detection Time: 2024-11-19 15:09:19.500000, Lat: 26.9152257, Lon: 75.7448582, trackid : 313
+Class: 2, Detection Time: 2024-11-19 15:09:21.866667, Lat: 26.9152257, Lon: 75.7448582, trackid : 317
+Class: 2, Detection Time: 2024-11-19 15:09:44.033333, Lat: 26.9153198, Lon: 75.7450646, trackid : 357
+Class: 2, Detection Time: 2024-11-19 15:09:44.366667, Lat: 26.9153198, Lon: 75.7450646, trackid : 359
+Class: 5, Detection Time: 2024-11-19 15:09:46.366667, Lat: 26.915189, Lon: 75.7453396, trackid : 368
+Class: 5, Detection Time: 2024-11-19 15:09:49.633333, Lat: 26.915189, Lon: 75.7453396, trackid : 374
+Class: 2, Detection Time: 2024-11-19 15:09:49.866667, Lat: 26.915189, Lon: 75.7453396, trackid : 377
+Class: 0, Detection Time: 2024-11-19 15:09:53.600000, Lat: 26.9151021, Lon: 75.7454722, trackid : 386
+Class: 1, Detection Time: 2024-11-19 15:10:15.766667, Lat: 26.9155503, Lon: 75.745659, trackid : 410
+Class: 5, Detection Time: 2024-11-19 15:10:16.133333, Lat: 26.9155503, Lon: 75.745659, trackid : 414
+Class: 2, Detection Time: 2024-11-19 15:10:40.733333, Lat: 26.9151703, Lon: 75.7463211, trackid : 444
+Class: 2, Detection Time: 2024-11-19 15:10:41.433333, Lat: 26.9151703, Lon: 75.7463211, trackid : 453
+Class: 2, Detection Time: 2024-11-19 15:10:41.533333, Lat: 26.9151703, Lon: 75.7463211, trackid : 458
+Class: 2, Detection Time: 2024-11-19 15:10:41.733333, Lat: 26.9151703, Lon: 75.7463211, trackid : 461
+Class: 2, Detection Time: 2024-11-19 15:10:41.800000, Lat: 26.9151703, Lon: 75.7463211, trackid : 466
+Class: 2, Detection Time: 2024-11-19 15:10:41.800000, Lat: 26.9151703, Lon: 75.7463211, trackid : 464
+Class: 2, Detection Time: 2024-11-19 15:10:42.033333, Lat: 26.9151703, Lon: 75.7463211, trackid : 477
+Class: 2, Detection Time: 2024-11-19 15:10:42.100000, Lat: 26.9151703, Lon: 75.7463211, trackid : 480
+Class: 2, Detection Time: 2024-11-19 15:10:42.300000, Lat: 26.9151703, Lon: 75.7463211, trackid : 488
+Class: 2, Detection Time: 2024-11-19 15:10:42.333333, Lat: 26.9151703, Lon: 75.7463211, trackid : 487
+Class: 2, Detection Time: 2024-11-19 15:10:42.833333, Lat: 26.9151703, Lon: 75.7463211, trackid : 494
+Class: 2, Detection Time: 2024-11-19 15:10:43.166667, Lat: 26.9151703, Lon: 75.7463211, trackid : 504
+Class: 0, Detection Time: 2024-11-19 15:11:04.233333, Lat: 26.9152477, Lon: 75.7464521, trackid : 519
+Class: 0, Detection Time: 2024-11-19 15:11:05.533333, Lat: 26.9152477, Lon: 75.7464521, trackid : 523
+Class: 0, Detection Time: 2024-11-19 15:11:10.166667, Lat: 26.9153772, Lon: 75.7466109, trackid : 531
+Class: 2, Detection Time: 2024-11-19 15:11:23.700000, Lat: 26.9155236, Lon: 75.7468278, trackid : 576
+Class: 2, Detection Time: 2024-11-19 15:11:24.933333, Lat: 26.9155236, Lon: 75.7468278, trackid : 585
+Class: 2, Detection Time: 2024-11-19 15:11:30.933333, Lat: 26.9161143, Lon: 75.7469654, trackid : 598
+Class: 2, Detection Time: 2024-11-19 15:11:31.066667, Lat: 26.9161143, Lon: 75.7469654, trackid : 600
+Class: 2, Detection Time: 2024-11-19 15:11:31.700000, Lat: 26.9161143, Lon: 75.7469654, trackid : 602
+Class: 2, Detection Time: 2024-11-19 15:11:32.766667, Lat: 26.9161143, Lon: 75.7469654, trackid : 607
+Class: 2, Detection Time: 2024-11-19 15:11:33.333333, Lat: 26.9161143, Lon: 75.7469654, trackid : 609
+Class: 2, Detection Time: 2024-11-19 15:11:33.633333, Lat: 26.9161143, Lon: 75.7469654, trackid : 613
+Class: 2, Detection Time: 2024-11-19 15:11:33.833333, Lat: 26.9161143, Lon: 75.7469654, trackid : 615
+Class: 2, Detection Time: 2024-11-19 15:11:34.500000, Lat: 26.9161143, Lon: 75.7469654, trackid : 619
+Class: 2, Detection Time: 2024-11-19 15:11:37.266667, Lat: 26.9161143, Lon: 75.7469654, trackid : 630
+Class: 0, Detection Time: 2024-11-19 15:11:40.966667, Lat: 26.9161143, Lon: 75.7469654, trackid : 647
+Class: 1, Detection Time: 2024-11-19 15:11:42.766667, Lat: 26.9161143, Lon: 75.7469654, trackid : 653
+Class: 2, Detection Time: 2024-11-19 15:12:06.033333, Lat: 26.9161602, Lon: 75.7469908, trackid : 669
+Class: 2, Detection Time: 2024-11-19 15:12:06.033333, Lat: 26.9161602, Lon: 75.7469908, trackid : 668
+Class: 2, Detection Time: 2024-11-19 15:12:06.133333, Lat: 26.9161602, Lon: 75.7469908, trackid : 670
+Class: 2, Detection Time: 2024-11-19 15:12:16.766667, Lat: 26.9161708, Lon: 75.747006, trackid : 690
+Class: 0, Detection Time: 2024-11-19 15:12:26.166667, Lat: 26.9161828, Lon: 75.747004, trackid : 711
+Class: 0, Detection Time: 2024-11-19 15:12:26.400000, Lat: 26.9161828, Lon: 75.747004, trackid : 713
+Class: 5, Detection Time: 2024-11-19 15:12:31.233333, Lat: 26.9161778, Lon: 75.746999, trackid : 735
+Class: 0, Detection Time: 2024-11-19 15:12:36, Lat: 26.9161812, Lon: 75.7469977, trackid : 739
+Class: 2, Detection Time: 2024-11-19 15:12:43.300000, Lat: 26.9161812, Lon: 75.7469977, trackid : 772
+Class: 2, Detection Time: 2024-11-19 15:06:40.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 9
+Class: 2, Detection Time: 2024-11-19 15:06:41.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 16
+Class: 2, Detection Time: 2024-11-19 15:06:44.900000, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 2, Detection Time: 2024-11-19 15:06:45.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 26
+Class: 2, Detection Time: 2024-11-19 15:06:45.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 25
+Class: 2, Detection Time: 2024-11-19 15:06:45.433333, Lat: 26.9150048, Lon: 75.7416909, trackid : 28
+Class: 2, Detection Time: 2024-11-19 15:06:45.666667, Lat: 26.9150048, Lon: 75.7416909, trackid : 31
+Class: 0, Detection Time: 2024-11-19 15:06:49.900000, Lat: 26.9150825, Lon: 75.7416004, trackid : 43
+Class: 0, Detection Time: 2024-11-19 15:06:50.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 51
+Class: 0, Detection Time: 2024-11-19 15:06:51.133333, Lat: 26.9150825, Lon: 75.7416004, trackid : 59
+Class: 0, Detection Time: 2024-11-19 15:06:51.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 65
+Class: 2, Detection Time: 2024-11-19 15:06:57, Lat: 26.9150328, Lon: 75.7418061, trackid : 73
+Class: 2, Detection Time: 2024-11-19 15:06:40.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 84
+Class: 2, Detection Time: 2024-11-19 15:06:41.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 91
+Class: 2, Detection Time: 2024-11-19 15:06:44.900000, Lat: 26.9150048, Lon: 75.7416909, trackid : 98
+Class: 2, Detection Time: 2024-11-19 15:06:45.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 101
+Class: 2, Detection Time: 2024-11-19 15:06:45.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 100
+Class: 2, Detection Time: 2024-11-19 15:06:45.433333, Lat: 26.9150048, Lon: 75.7416909, trackid : 103
+Class: 2, Detection Time: 2024-11-19 15:06:45.666667, Lat: 26.9150048, Lon: 75.7416909, trackid : 106
+Class: 0, Detection Time: 2024-11-19 15:06:49.900000, Lat: 26.9150825, Lon: 75.7416004, trackid : 118
+Class: 0, Detection Time: 2024-11-19 15:06:50.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 126
+Class: 0, Detection Time: 2024-11-19 15:06:51.133333, Lat: 26.9150825, Lon: 75.7416004, trackid : 134
+Class: 0, Detection Time: 2024-11-19 15:06:51.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 140
+Class: 2, Detection Time: 2024-11-19 15:06:57, Lat: 26.9150328, Lon: 75.7418061, trackid : 148
+Class: 0, Detection Time: 2024-11-19 15:07:00.700000, Lat: 26.9149523, Lon: 75.7418846, trackid : 158
+Class: 0, Detection Time: 2024-11-19 15:07:01.066667, Lat: 26.9149523, Lon: 75.7418846, trackid : 159
+Class: 5, Detection Time: 2024-11-19 15:07:01.400000, Lat: 26.9149523, Lon: 75.7418846, trackid : 161
+Class: 0, Detection Time: 2024-11-19 15:07:01.933333, Lat: 26.9149523, Lon: 75.7418846, trackid : 167
+Class: 2, Detection Time: 2024-11-19 15:06:40.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 9
+Class: 2, Detection Time: 2024-11-19 15:06:41.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 16
+Class: 2, Detection Time: 2024-11-19 15:06:40.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 9
+Class: 2, Detection Time: 2024-11-19 15:06:41.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 16
+Class: 2, Detection Time: 2024-11-19 15:06:44.900000, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 2, Detection Time: 2024-11-19 15:06:45.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 26
+Class: 2, Detection Time: 2024-11-19 15:06:45.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 25
+Class: 2, Detection Time: 2024-11-19 15:06:45.433333, Lat: 26.9150048, Lon: 75.7416909, trackid : 28
+Class: 2, Detection Time: 2024-11-19 15:06:45.666667, Lat: 26.9150048, Lon: 75.7416909, trackid : 31
+Class: 2, Detection Time: 2024-11-19 15:06:40.633333, Lat: 26.9150048, Lon: 75.7416909, trackid : 9
+Class: 2, Detection Time: 2024-11-19 15:06:41.400000, Lat: 26.9150048, Lon: 75.7416909, trackid : 16
+Class: 2, Detection Time: 2024-11-19 15:06:44.900000, Lat: 26.9150048, Lon: 75.7416909, trackid : 23
+Class: 2, Detection Time: 2024-11-19 15:06:45.333333, Lat: 26.9150048, Lon: 75.7416909, trackid : 26
+Class: 2, Detection Time: 2024-11-19 15:06:45.366667, Lat: 26.9150048, Lon: 75.7416909, trackid : 25
+Class: 2, Detection Time: 2024-11-19 15:06:45.433333, Lat: 26.9150048, Lon: 75.7416909, trackid : 28
+Class: 2, Detection Time: 2024-11-19 15:06:45.666667, Lat: 26.9150048, Lon: 75.7416909, trackid : 31
+Class: 0, Detection Time: 2024-11-19 15:06:49.900000, Lat: 26.9150825, Lon: 75.7416004, trackid : 43
+Class: 0, Detection Time: 2024-11-19 15:06:50.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 51
+Class: 0, Detection Time: 2024-11-19 15:06:51.133333, Lat: 26.9150825, Lon: 75.7416004, trackid : 59
+Class: 0, Detection Time: 2024-11-19 15:06:51.533333, Lat: 26.9150825, Lon: 75.7416004, trackid : 65
+Class: 2, Detection Time: 2024-11-19 15:06:57, Lat: 26.9150328, Lon: 75.7418061, trackid : 73
+Class: 0, Detection Time: 2024-11-19 15:07:00.700000, Lat: 26.9149523, Lon: 75.7418846, trackid : 83
+Class: 0, Detection Time: 2024-11-19 15:07:01.066667, Lat: 26.9149523, Lon: 75.7418846, trackid : 84
+Class: 5, Detection Time: 2024-11-19 15:07:01.400000, Lat: 26.9149523, Lon: 75.7418846, trackid : 86

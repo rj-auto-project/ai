@@ -1,0 +1,182 @@
+[
+    {
+        "detection_id": "d9cc7861-bace-4a24-b832-c1b7317bb214",
+        "thumbnail": "9.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "9"
+    },
+    {
+        "detection_id": "f77a843c-8d01-4802-9398-7624da5b3be0",
+        "thumbnail": "16.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "16"
+    },
+    {
+        "detection_id": "8c5095ac-3e1a-4fac-bff5-6a0f1f75b555",
+        "thumbnail": "23.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "23"
+    },
+    {
+        "detection_id": "dfc04dd2-8d02-4007-97be-d093985c4fe7",
+        "thumbnail": "26.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "26"
+    },
+    {
+        "detection_id": "063f1295-e6ee-4ba1-bbcb-bb4afdbfade1",
+        "thumbnail": "25.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "25"
+    },
+    {
+        "detection_id": "22759ea7-bc80-4b92-971c-38aaf586a4d9",
+        "thumbnail": "28.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "28"
+    },
+    {
+        "detection_id": "68cc1956-4ce3-4580-a9d3-590081a88d58",
+        "thumbnail": "31.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150048,
+            75.7416909
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "31"
+    },
+    {
+        "detection_id": "d6ec3323-7371-4905-8171-b25b2ad0de95",
+        "thumbnail": "43.jpg",
+        "class_name": "broken-divider",
+        "location": [
+            26.9150825,
+            75.7416004
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "43"
+    },
+    {
+        "detection_id": "12782f38-3487-4ab5-b26e-734d14298e2a",
+        "thumbnail": "51.jpg",
+        "class_name": "broken-divider",
+        "location": [
+            26.9150825,
+            75.7416004
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "51"
+    },
+    {
+        "detection_id": "d023bb07-39e3-4e82-a93b-af3bf8023781",
+        "thumbnail": "59.jpg",
+        "class_name": "broken-divider",
+        "location": [
+            26.9150825,
+            75.7416004
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "59"
+    },
+    {
+        "detection_id": "4da08ddb-35f6-4a28-8114-eb91e6fd8442",
+        "thumbnail": "65.jpg",
+        "class_name": "broken-divider",
+        "location": [
+            26.9150825,
+            75.7416004
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "65"
+    },
+    {
+        "detection_id": "8243d814-0348-4348-9c0d-f536cba49a9c",
+        "thumbnail": "73.jpg",
+        "class_name": "crack",
+        "location": [
+            26.9150328,
+            75.7418061
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "73"
+    },
+    {
+        "detection_id": "0d140b16-1902-4c7e-8453-1d16d5198944",
+        "thumbnail": "83.jpg",
+        "class_name": "broken-divider",
+        "location": [
+            26.9149523,
+            75.7418846
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "83"
+    },
+    {
+        "detection_id": "5d0e865f-61e2-4af7-8769-5cf266c3ffaa",
+        "thumbnail": "84.jpg",
+        "class_name": "broken-divider",
+        "location": [
+            26.9149523,
+            75.7418846
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "84"
+    },
+    {
+        "detection_id": "707a66e8-50d4-4fe1-92f0-b7b9855c86f0",
+        "thumbnail": "86.jpg",
+        "class_name": "pothole",
+        "location": [
+            26.9149523,
+            75.7418846
+        ],
+        "survey_id": "1",
+        "distance": "100",
+        "track_id": "86"
+    }
+]

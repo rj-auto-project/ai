@@ -1,0 +1,124 @@
+{
+    "Kurkure":{
+
+    "keyword": ["masala","chilli","naughty","green","yummy cheese"],
+    "names": ["masala munch","chilli chatka","naughty tomato","green chutney","puffcorn yummy cheese"]
+},
+"Aashirvaad-Atta":{
+    "keyword":["shudh", "0% maida"],
+    "names":["shudh chakki atta", "shudh chakki atta"]
+
+},
+"Amul-Butter":{
+    "keyword":["pasteurised", "garlic"],
+    "names":["pasteurised", "garlic & herbs"]
+},
+"Bourn-Vita":{
+    "keyword":["5star","women","champs"],
+    "names":["cadbury 5star magic","cadbury women","cadbury lil champs"]
+},
+"Coca-Cola":{
+    "keyword":["original","zero","vanilla","diet"],
+    "names":["original taste","zero sugar","vanilla flavour","diet coke"]
+},
+"Colgate-Toothpaste":{
+    "keyword":["strong","active","sensitive","herbal","max"],
+    "names":["strong teeth","active salt","sensitive","herbal","maxfresh"]
+},
+"Dabur Chyawanprash":{
+    "keyword":[],
+    "names":[]
+},
+"Dabur-Honey":{
+    "keyword":[],
+    "names":[]
+},
+"Dairy-Milk-Chocolate":{
+    "keyword":["chocolate","hazelnut","bubbly","roast","fruit"],
+    "names":["cadbury silk","cadbury silk hazelnut","cadbury silk bubbly","cadbury silk roast almond","cadbury silk fruit & nut"]
+},
+"Dettol-Hand-Wash":{
+    "keyword":["original","sensitive","aloe","skincare","cool","foaming"],
+    "names":["original","sensitive","aloe vera","skincare","cool","foaming"]
+},
+"Harpic":{
+    "keyword":["bathroom","white","organic","fresh","platinum","germ"],
+    "names":["bathroom cleaner","white shine","organic active","fresh pine","platinum active shield","germ & stain blaster"]
+},
+"Himalaya-Face-Wash":{
+    "keyword":["neem","turmeric","pollution","oil"],
+    "names":["purifying neem","dark spot termeric","pollution detox charcoal","oil clear lemon"]
+},
+"Kissan-Tomato-Ketchup":{
+    "keyword":["tomato"],
+    "names":["fresh tomato"]
+},
+"Lakme-Peach-Moisture-Riser":{
+    "keyword":["Lakme"],
+    "names":["peach milk"]
+},
+"Lays":{
+    "keyword":["classic","american","chile","magic","spanish","west"],
+    "names":["classic salted","american style cream & onion","chile limon","india's magic masala","spanish tomato tango","west indies' hot 'n' sweet chilli"]
+},
+"Loreal-Shampoo":{
+    "keyword":["total","hyaluron","fall","nourishing","xtenso","detangling"],
+    "names":["total repair 5","72h moisture filling","anti hairfall","6 oil nourish","xtenso care","dream length"]
+},
+"Lotus-sunscreen":{
+    "keyword":["pa+","pa++","pa+++"],
+    "names":["spf 20","spf 30","spf 50"]
+},
+"Maggie":{
+    "keyword":["veggie","maggi"],
+    "names":["veggie masala","maggi"]
+},
+"Nescafe-Coffee":{
+    "keyword":["nescafe"],
+    "names":["classic"]
+},
+"Nivea-Body-Location":{
+    "keyword":["body","cocoa","hydration","shea","butter","smooth","gel"],
+    "names":["body milk","cocoa nourish","aloe hydration","shea smooth","cocoa butter","smooth milk","gel body lotion"]
+},
+"oreo":{
+    "keyword":["original","choco","strawberry"],
+    "names":["cadbury original","cadbury choco creme","strawberry creme"]
+},
+"Parachute Coconut Oil":{
+    "keyword":["coconut","hot","aloe","sampoorna"],
+    "names":["coconut oil","hot oil","aloe vera","sampoorna"]
+},
+"Pears-Soap":{
+    "keyword":["soft","oil","gentle"],
+    "names":["soft and fresh","oil clear & glow","pure and gentle"]
+},
+"Pilgrim-Hair-serum":{
+    "keyword":["argan","redensyl"],
+    "names":["argan oil hair serum","redensyl & anagain advanced hair growth"]
+},
+"Pond's-Powder":{
+    "keyword":["dreamflower","sandal","magic","starlight","aloe"],
+    "names":["dreamflower","sandal","magic","starlight","aloe cooling"]
+},
+"Pro-ease":{
+    "keyword":["pro"],
+    "names":["pro ease"]
+},
+"Surf-excel":{
+    "keyword":["surf"],
+    "names":["surf excel easy wash"]
+},
+"Ujala":{
+    "keyword":["ujala"],
+    "names":["ujala supreme"]
+},
+"Vaseline":{
+    "keyword":["original","cocoa","vitamin","aloe"],
+    "names":["pure petroleum jelly","rich conditioning jelly cocoa butter","vitamin e","aloe fresh"]
+},
+"Vim Bar":{
+    "keyword":["lemons","extra"],
+    "names":["lemons","extra anti smell"]
+}
+}

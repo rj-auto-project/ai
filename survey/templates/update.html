@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Data</title>
+</head>
+<body>
+    <h1>Update Data</h1>
+    <form method="post">
+        {% for key, value in row.items() %}
+        <label>{{ key.capitalize() }}: 
+            {% if key == "location" %}
+            Latitude: <input type="text" name="lat" value="{{ value[0] }}"> 
+            Longitude: <input type="text" name="lng" value="{{ value[1] }}">
+            {% elif key == "thumbnail" %}
+            <input type="text" name="{{ key }}" value="{{ value }}">
+            <br>
+            <img src="{{ url_for('static', filename='images/' + value) }}" alt="{{ value }}" width="400">
+            {% else %}
+            <input type="text" name="{{ key }}" value="{{ value }}">
+            {% endif %}
+        </label>
+        <br>
+        {% endfor %}
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

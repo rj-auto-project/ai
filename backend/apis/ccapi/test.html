@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WebSocket Client</title>
+</head>
+<body>
+    <input type="text" id="videoPath" placeholder="Enter video path">
+    <button onclick="startWebSocket()">Start</button>
+    <div id="output"></div>
+
+    <script>
+        let socket;
+
+        function startWebSocket() {
+            const videoPath = document.getElementById('videoPath').value;
+            socket = new WebSocket('ws://localhost:8000/ws');
+
+            socket.onopen = function(event) {
+                socket.send(videoPath);  // Send video path to the server
+            };
+
+            socket.onmessage = function(event) {
+                const outputDiv = document.getElementById('output');
+                outputDiv.innerHTML += `<p>Predicted Count: ${event.data}</p>`;
+            };
+
+            socket.onclose = function(event) {
+                console.log('WebSocket closed');
+            };
+
+            socket.onerror = function(event) {
+                console.error('WebSocket error', event);
+            };
+        }
+    </script>
+</body>
+</html>

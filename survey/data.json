@@ -1,0 +1,38 @@
+[
+    {
+        "id": 3,
+        "name": "Jane Doe",
+        "skills": [
+            "React",
+            "JavaScript"
+        ],
+        "is_employee": false
+    },
+    {
+        "id": 3,
+        "name": "Jane Doe",
+        "skills": [
+            "React",
+            "JavaScript"
+        ],
+        "is_employee": false
+    },
+    {
+        "id": 3,
+        "name": "Jane Doe",
+        "skills": [
+            "React",
+            "JavaScript"
+        ],
+        "is_employee": false
+    },
+    {
+        "id": 3,
+        "name": "Jane Doe",
+        "skills": [
+            "React",
+            "JavaScript"
+        ],
+        "is_employee": false
+    }
+]

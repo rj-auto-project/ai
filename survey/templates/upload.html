@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enter File Paths for Processing</title>
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter File Paths for Processing</h1>
+    <form id="file-path-form">
+        <label for="video-path">Video file path:</label>
+        <input type="text" id="video-path" name="video-path" placeholder="Enter full path to video file" required><br><br>
+        
+        <label for="text-path">Text file path:</label>
+        <input type="text" id="text-path" name="text-path" placeholder="Enter full path to text file" required><br><br>
+        
+        <label for="model">Select Model:</label>
+        <select id="model" name="model" required>
+            {% for model_key, model_name in models.items() %}
+            <option value="{{ model_key }}">{{ model_name }}</option>
+            {% endfor %}
+        </select><br><br>
+        
+        <button type="submit">Send File Paths and Process</button>
+    </form>
+
+    <div id="loader">Processing your files, please wait...</div>
+    <div id="result" style="margin-top: 20px;"></div>
+
+    <script>
+        const form = document.getElementById('file-path-form');
+        const loader = document.getElementById('loader');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            loader.style.display = 'block'; // Show the loader
+
+            // Prepare data to send
+            const data = {
+                video_file: document.getElementById('video-path').value,
+                text_file: document.getElementById('text-path').value,
+                model: document.getElementById('model').value,
+            };
+
+            try {
+                const response = await fetch('http://0.0.0.0:5346/process-video/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    resultDiv.innerHTML = `<p>Processing completed successfully!</p>
+                                           <p><strong>Details:</strong> ${JSON.stringify(result)}</p>`;
+                } else {
+                    const error = await response.text();
+                    resultDiv.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            } finally {
+                loader.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

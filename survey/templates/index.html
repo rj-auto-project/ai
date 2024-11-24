@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic JSON Data Table</title>
+</head>
+<body>
+    <h1>Dynamic Data Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                {% for column in columns %}
+                <td>
+                    {% if column == "thumbnail" %}
+                    <!-- Display the image -->
+                    <img src="{{ url_for('static', filename='images/' + row[column]) }}" alt="{{ row[column] }}" width="300">
+                    {% elif column == "location" %}
+                    Lat: {{ row[column][0] }}, Lng: {{ row[column][1] }}
+                    {% else %}
+                    {{ row[column] }}
+                    {% endif %}
+                </td>
+                {% endfor %}
+                <td>
+                    <a href="/update/{{ row.detection_id }}">Update</a> |
+                    <a href="/delete/{{ row.detection_id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button style="width:90px; height:50px;", id="save_to_db-btn"> Save to DB</button>
+</body>
+</html>

@@ -1,0 +1,12 @@
+tensorflow==2.17.0
+pillow==10.4.0
+numpy==1.26.4
+opencv-python==4.10.0.84
+ultralytics==8.2.82
+redis==5.0.8
+torch==2.4.0
+python-dotenv==1.0.1
+filterpy==1.4.5
+scikit-image==0.17.2
+lap==0.4.0
+psycopg2-binary==2.9.9

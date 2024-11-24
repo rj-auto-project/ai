@@ -1,0 +1,6 @@
+pyautogui
+easyocr
+opencv-python
+selenium
+python-dotenv
+pycopy-webbrowser

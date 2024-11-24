@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic JSON Data Table</title>
+    <style>
+        #loader {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Dynamic Data Table</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column }}</th>
+                {% endfor %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                {% for column in columns %}
+                <td>
+                    {% if column == "thumbnail" %}
+                    <!-- Display the image -->
+                    <img src="{{ url_for('static', filename='images/' + row[column]) }}" alt="{{ row[column] }}" width="300">
+                    {% elif column == "location" %}
+                    Lat: {{ row[column][0] }}, Lng: {{ row[column][1] }}
+                    {% else %}
+                    {{ row[column] }}
+                    {% endif %}
+                </td>
+                {% endfor %}
+                <td>
+                    <a href="/update/{{ row.detection_id }}">Update</a> |
+                    <a href="/delete/{{ row.detection_id }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <button style="width:90px; height:50px;", id="save_to_db-btn"> Save to DB</button>
+    <div id="loader">Processing your video, please wait...</div>
+
+    <script>
+        const submit_btn = document.getElementById('save_to_db-btn');
+        const loader = document.getElementById('loader');
+
+        submit_btn.addEventListener('click', async (event) => {
+            event.preventDefault(); // Prevent the default form submission
+            loader.style.display = 'block'; // Show the loader
+
+            try {
+                const response = await fetch('http://0.0.0.0:5346/save-to-db/', {
+                    method: 'POST',
+                    body: {
+                        "send" : true
+                    },
+                });
+                if (response.ok) {
+                    const data = await response.json();
+                    resultDiv.innerHTML = `<p>Processing completed successfully!</p>
+                                           <p><strong>Details:</strong> ${JSON.stringify(data)}</p>`;
+                } else {
+                    const error = await response.text();
+                    resultDiv.innerHTML = `<p style="color: red;">Error: ${error}</p>`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            } finally {
+                loader.style.display = 'none';
+                location.reload()
+            }
+        });
+    </script>
+</body>
+</html>
